@@ -23,13 +23,14 @@ Vite `base` comes from a single value: **`BASE_URL`**.
 
 **Local:** copy `.env.example` to `.env.local` (gitignored) and set `BASE_URL`.
 
-**GitHub Actions:** Settings → Secrets and variables → Actions → Variables → `BASE_URL` (same value as above). If the variable is unset, the build uses `/`.
+**GitHub Actions:** nothing to set. The workflow derives the base from the repository name (`/<repo>/`, or `/` for a `<user>.github.io` repo). To override it, add an Actions variable `BASE_URL` under Settings → Secrets and variables → Actions → Variables.
 
 ## Deploy to GitHub Pages
 
 1. Merge to `main` (or run the **Deploy GitHub Pages** workflow from the Actions tab).
 2. Repo Settings → Pages → Source: **GitHub Actions**.
-3. Set the `BASE_URL` Actions variable to match the Pages URL (usually `/<repo>/` for a fork).
-4. The workflow runs `npm ci`, `npm test`, and `npm run build`, then publishes `dist/`.
+3. The workflow runs `npm ci`, `npm test`, and `npm run build`, then publishes `dist/`.
+
+If the deployed page is blank, check the browser console for 404s on `/assets/...`: that means the build base path does not match the Pages URL. The **Resolve base path** step in the workflow log prints the base it used.
 
 The workflow file is `.github/workflows/pages.yml`.
