@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     base: normalizePagesBase(process.env.BASE_URL ?? env.BASE_URL),
     test: {
-      include: ['tests/unit/**/*.test.ts'],
+      include: ['tests/unit/**/*.{test.ts,test.tsx}'],
     },
   }
 })

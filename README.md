@@ -12,6 +12,8 @@ npm run dev
 
 `npm run build` writes static files to `dist/`. `npm test` runs the unit suite.
 
+**Site copy:** edit strings in `src/modules/text/t-lookup/text-config.ts`. The landing page looks them up with `t('page.section.item')`.
+
 ## Base path (forks)
 
 Vite `base` comes from a single value: **`BASE_URL`**.

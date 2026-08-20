@@ -2,7 +2,7 @@
 
 **Requirements:** `docs/requirements/slices/00-app-scaffold-and-deploy/00-app-scaffold-and-deploy-requirements.md`  
 **Last synced:** 2026-08-20  
-**Status:** build in progress — 2026-08-20
+**Status:** shipped — 2026-08-20
 
 Executable task list for this vertical slice. Synced from human requirements. Plan approved; implementation proceeds via `/start-phase`.
 
@@ -40,9 +40,9 @@ Executable task list for this vertical slice. Synced from human requirements. Pl
 
 ## Phase 3 — Deploy & CI
 
-- [ ] Add a GitHub Pages deploy workflow (GitHub Actions) or document the manual deploy path
-- [ ] Add a base fork/README note: how to set the base path and deploy a fork
-- [ ] Confirm `npm run build` runs in the workflow
+- [x] Add a GitHub Pages deploy workflow (GitHub Actions) or document the manual deploy path — **2026-08-20** `.github/workflows/pages.yml`; derives `/<repo>/`
+- [x] Add a base fork/README note: how to set the base path and deploy a fork — **2026-08-20** root `README.md`
+- [x] Confirm `npm run build` runs in the workflow — **2026-08-20** workflow Build step; human approved live Pages after blank-page fix
 
 ---
 
@@ -52,14 +52,14 @@ Insert after implementation phases and before Final. Do not start Final until th
 
 ### Change checklist
 
-_Add items here as the human requests changes during this phase. Empty at task sync is normal._
-
-- [ ] _(none yet — populated during Manual confirmation)_
+- [x] Deployed Pages showed an empty page (JS 404 at `/assets/…` instead of `/<repo>/assets/…`) — **2026-08-20**
+  - **Note:** Workflow Resolve base path now sets `/<repo>/` (optional `BASE_URL` override). Human approved after re-deploy.
 
 ### Phase closeout
 
-- [ ] Walk the change checklist with the human (every item checked, N/A, or carried forward)
-- [ ] Human verbal confirmation recorded — slice ready for Final phase — **Note:** _date + paraphrase_
+- [x] Walk the change checklist with the human (every item checked, N/A, or carried forward) — **2026-08-20**
+- [x] Human verbal confirmation recorded — slice ready for Final phase — **2026-08-20**
+  - **Note:** Human: “This phase and this slice is approved.”
 
 ---
 
@@ -67,24 +67,24 @@ _Add items here as the human requests changes during this phase. Empty at task s
 
 ### Documentation
 
-- [ ] As-built doc in `docs/modules/platform/features/app-scaffold/`
-- [ ] Build evidence in `docs/project-files/build-evidence/`
-- [ ] Update `docs/product-manager-agent/implementation-catalog.md` (scaffold + deploy shipped)
-- [ ] **Project-wide documentation update** (mandatory) — walk `docs/README.md` and affected layer hubs (`architecture/`, `configuration/`, `requirements/`, `testing/`); update map/hub tables so the overall docs tree reflects the scaffold
+- [x] As-built doc in `docs/modules/platform/features/app-scaffold/` — **2026-08-20**
+- [x] Build evidence in `docs/project-files/build-evidence/` — **2026-08-20** `00-app-scaffold-and-deploy.md`
+- [x] Update `docs/product-manager-agent/implementation-catalog.md` (scaffold + deploy shipped) — **2026-08-20**
+- [x] **Project-wide documentation update** (mandatory) — walk `docs/README.md` and affected layer hubs (`architecture/`, `configuration/`, `requirements/`, `testing/`); update map/hub tables so the overall docs tree reflects the scaffold — **2026-08-20** created map + hubs + `implemented-design/` + module index
 
 ### Success criteria
 
-- [ ] Complete `success-criteria/closeout.md` — SC-01..SC-04 with `verify:` links
-- [ ] Update `success-criteria/traceability.md` — Result PASS/FAIL/N/A + evidence
-- [ ] Evaluate SC-xx; record in verification report
+- [x] Complete `success-criteria/closeout.md` — SC-01..SC-04 with `verify:` links — **2026-08-20**
+- [x] Update `success-criteria/traceability.md` — Result PASS/FAIL/N/A + evidence — **2026-08-20** all PASS
+- [x] Evaluate SC-xx; record in verification report — **2026-08-20** `docs/project-files/verification-reports/20260820-153300-00-app-scaffold-and-deploy/`
 
 ### Regression tests (executable — required)
 
-- [ ] **Create** — build smoke (static output + base path) and app-shell render smoke in canonical `tests/` paths
-- [ ] **Register** — add rows to `docs/project-files/regression/regression-plan.md`
-- [ ] **SCAFFOLD** — update `tests/SCAFFOLD.md`: Planned → Populated
-- [ ] **Execute** — `npm test`
-- [ ] **Execute** — `npm run build` before merge
+- [x] **Create** — build smoke (static output + base path) and app-shell render smoke in canonical `tests/` paths — **2026-08-20** `static-build.test.ts`, `app-shell.test.tsx`
+- [x] **Register** — add rows to `docs/project-files/regression/regression-plan.md` — **2026-08-20** R-00 / U-00
+- [x] **SCAFFOLD** — update `tests/SCAFFOLD.md`: Planned → Populated — **2026-08-20** unit + README
+- [x] **Execute** — `npm test` — **2026-08-20** 5 passed
+- [x] **Execute** — `npm run build` before merge — **2026-08-20** green
 
 ---
 

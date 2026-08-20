@@ -6,6 +6,8 @@ Human and agent **acceptance criteria** and **verification artifacts** — separ
 |------|------|
 | [`design-patterns/`](design-patterns/) | Project-wide checklist criteria (`DP-xx`) for `/v` and optional `/v+codex` |
 | [`../verification-reports/`](../verification-reports/) | Post-run reports (evidence, optional Codex review) |
+| Latest Slice 00 | [20260820-153300-00-app-scaffold-and-deploy](../verification-reports/20260820-153300-00-app-scaffold-and-deploy/) |
+| Latest Slice 01 | [20260820-181200-01-text-management](../verification-reports/20260820-181200-01-text-management/) |
 
 ## Slice criteria
 

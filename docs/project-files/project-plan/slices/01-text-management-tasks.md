@@ -1,9 +1,10 @@
 # Slice 01 — text-management (tasks)
 
 **Requirements:** `docs/requirements/slices/01-text-management/01-text-management-requirements.md`  
-**Last synced:** 2026-08-20
+**Last synced:** 2026-08-20  
+**Status:** shipped — 2026-08-20
 
-Executable task list for this vertical slice. Do not start implementation until the human approves this file and `success-criteria/traceability.md`.
+Executable task list for this vertical slice. Plan approved; implementation proceeds via `/start-phase`.
 
 ## Acceptance criteria map (required at task sync)
 
@@ -26,15 +27,15 @@ Executable task list for this vertical slice. Do not start implementation until 
 
 ## Phase 1 — Text store & `t()` lookup
 
-- [ ] Create a central text config module (tree keyed by `[page].[section].[item]`)
-- [ ] Implement `t(key)` helper (and/or a `useText()` hook) resolving keys against the store
-- [ ] Enforce/normalize at least `[page].[section]` grouping (validation helper or lint note)
-- [ ] Wire the app shell copy from Slice 00 to use `t()` keys
+- [x] Create a central text config module (tree keyed by `[page].[section].[item]`) — **2026-08-20** `src/modules/text/t-lookup/text-config.ts`
+- [x] Implement `t(key)` helper (and/or a `useText()` hook) resolving keys against the store — **2026-08-20** `t.ts` + `useText.ts`; `npm test` 9 passed
+- [x] Enforce/normalize at least `[page].[section]` grouping (validation helper or lint note) — **2026-08-20** `keys.ts` `isGroupedTextKey` / `isFullTextKey`
+- [x] Wire the app shell copy from Slice 00 to use `t()` keys — **2026-08-20** `src/App.tsx` uses `useText()`; human approved phase
 
 ## Phase 2 — Fallback & localization-ready structure
 
-- [ ] Implement safe fallback for missing keys (configurable placeholder or key echo, no throw)
-- [ ] Structure the store so an alternate text set / locale can be provided without changing call sites
+- [x] Implement safe fallback for missing keys (configurable placeholder or key echo, no throw) — **2026-08-20** default echo; `setTextFallback`; `t-lookup.test.tsx`
+- [x] Structure the store so an alternate text set / locale can be provided without changing call sites — **2026-08-20** `TextProvider` / `createT` / `setActiveTextTree`; human approved phase
 
 ---
 
@@ -42,12 +43,12 @@ Executable task list for this vertical slice. Do not start implementation until 
 
 ### Change checklist
 
-- [ ] _(none yet — populated during Manual confirmation)_
+- [x] Update sample shell copy in `text-config.ts` (brand MY APP, title My Website Template) — **2026-08-20**
 
 ### Phase closeout
 
-- [ ] Walk the change checklist with the human
-- [ ] Human verbal confirmation recorded — slice ready for Final phase — **Note:** _date + paraphrase_
+- [x] Walk the change checklist with the human — **2026-08-20** copy-edit item closed; Pages vs local confusion was deploy lag, not a product defect
+- [x] Human verbal confirmation recorded — slice ready for Final phase — **Note:** 2026-08-20 — “This phase and this whole slice is approved - close it out”
 
 ---
 
@@ -55,24 +56,24 @@ Executable task list for this vertical slice. Do not start implementation until 
 
 ### Documentation
 
-- [ ] As-built doc in `docs/modules/text/features/t-lookup/`
-- [ ] Build evidence in `docs/project-files/build-evidence/`
-- [ ] Update `docs/product-manager-agent/implementation-catalog.md`
-- [ ] **Project-wide documentation update** (mandatory) — walk `docs/README.md` + layer hubs; update map/hub tables
+- [x] As-built doc in `docs/modules/text/features/t-lookup/` — **2026-08-20**
+- [x] Build evidence in `docs/project-files/build-evidence/` — **2026-08-20** `01-text-management.md`
+- [x] Update `docs/product-manager-agent/implementation-catalog.md` — **2026-08-20** Next slice `02`; t-lookup Shipped
+- [x] **Project-wide documentation update** (mandatory) — walk `docs/README.md` + layer hubs; update map/hub tables — **2026-08-20** map, architecture, configuration, testing, implemented-design (`design/text.md`), modules indexes, catalog, regression, SCAFFOLD, developer.md, root README; verification hub + report
 
 ### Success criteria
 
-- [ ] Complete `success-criteria/closeout.md` — SC-01..SC-04 with `verify:` links
-- [ ] Update `success-criteria/traceability.md` — Result + evidence
-- [ ] Evaluate SC-xx; record in verification report
+- [x] Complete `success-criteria/closeout.md` — SC-01..SC-04 with `verify:` links — **2026-08-20** all PASS
+- [x] Update `success-criteria/traceability.md` — Result + evidence — **2026-08-20**
+- [x] Evaluate SC-xx; record in verification report — **2026-08-20** `docs/project-files/verification-reports/20260820-181200-01-text-management/`
 
 ### Regression tests (executable — required)
 
-- [ ] **Create** — unit tests for `t()` known keys, unknown-key fallback, alternate-set swap
-- [ ] **Register** — add rows to `docs/project-files/regression/regression-plan.md`
-- [ ] **SCAFFOLD** — update `tests/SCAFFOLD.md`: Planned → Populated
-- [ ] **Execute** — `npm test`
-- [ ] **Execute** — `npm run build` before merge
+- [x] **Create** — unit tests for `t()` known keys, unknown-key fallback, alternate-set swap — **2026-08-20** `tests/unit/t-lookup.test.tsx`
+- [x] **Register** — add rows to `docs/project-files/regression/regression-plan.md` — **2026-08-20** U-01-t, R-01-test, R-01-build
+- [x] **SCAFFOLD** — update `tests/SCAFFOLD.md`: Planned → Populated — **2026-08-20** unit layer already Populated; notes include `t-lookup`
+- [x] **Execute** — `npm test` — **2026-08-20** 4 files, 15 passed
+- [x] **Execute** — `npm run build` before merge — **2026-08-20** `tsc -b && vite build` green
 
 ---
 
