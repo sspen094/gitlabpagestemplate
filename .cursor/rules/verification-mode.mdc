@@ -1,0 +1,18 @@
+---
+description: Verification mode — implement, test, and prove before marking done
+alwaysApply: false
+---
+
+# Verification mode (`/v`)
+
+When the user invokes **`/v`** or asks for verification mode:
+
+1. Follow [`.cursor/commands/v.md`](../commands/v.md).
+2. Load slice **SC-xx** from `docs/requirements/slices/<SLICE_ID>/success-criteria/` and **DP-xx** from `docs/project-files/verification/design-patterns/`.
+3. Run scoped tests (`npm test`) and any UI smoke steps linked from criteria.
+4. Update `success-criteria/traceability.md` **Result** and **Evidence** at closeout.
+5. Write a verification report under `docs/project-files/verification-reports/` when closing a milestone.
+
+Do not claim "done" while any applicable SC-xx or DP-xx item is **FAIL** or still `planned`.
+
+Pair with [`ex-react-slice-plan` skill](../skills/ex-react-slice-plan/SKILL.md) for final-phase regression tasks.

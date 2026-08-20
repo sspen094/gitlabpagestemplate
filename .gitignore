@@ -1,0 +1,38 @@
+# Local env and secrets
+.env
+.env.local
+
+# Local-only docs and runbooks
+HANDOFF.md
+/bootstrap.md
+
+/sandbox/
+
+# Cursor hooks (per-machine)
+.cursor/hooks.json
+.cursor/active-slice
+.cursor/active-defects
+
+# Local-only docs
+docs/local/
+
+# Node
+node_modules/
+dist/
+
+# Test / coverage
+coverage/
+playwright-report/
+test-results/
+
+# Python (handoff hook only)
+.venv/
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# IDE
+.idea/

@@ -1,0 +1,19 @@
+---
+description: Title Case labels for UI text
+alwaysApply: false
+globs: frontend/src/**/*.tsx
+---
+
+# UI Title Case
+
+Use **Title Case** for:
+
+- Page titles and section headings (e.g. "Test Results", "Deployment Status")
+- Table column headers
+- Navigation labels
+
+Use **sentence case** for helper text, tooltips, and long descriptions.
+
+Button labels: verb-first where actionable ("Refresh Data", "View Pipeline").
+
+See [`docs/implemented-design/design/ui-controls.md`](../../docs/implemented-design/design/ui-controls.md).

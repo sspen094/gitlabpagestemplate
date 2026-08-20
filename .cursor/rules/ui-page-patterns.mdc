@@ -1,0 +1,19 @@
+---
+description: UI page layout patterns for React Mantine pages
+alwaysApply: false
+globs: frontend/src/**/*.tsx
+---
+
+# UI page patterns
+
+When building or editing React pages:
+
+- **Filters above content** — selectors and filters appear above tables or charts they affect.
+- **Page header** — title + optional actions row; use Mantine `Title` with Title Case labels.
+- **Loading / empty / error** — each list or chart handles all three states explicitly.
+- **API boundary** — pages call hooks/services; no SQL or raw fetch logic duplicated across pages.
+- **No chat-rationale UI** — do not add paragraphs, headers, alerts, banners, or other static text that explain what was asked for in chat or why a behavior exists. Chat instructions are for the agent; rationale belongs in `docs/`, as-built READMEs, or commit messages — not in the product UI. Show the result of the action; do not narrate it.
+
+Authority: [`docs/implemented-design/design/ui-controls.md`](../../docs/implemented-design/design/ui-controls.md) and [`docs/requirements/vision/ex-react_ui_spec_for_cursor.md`](../../docs/requirements/vision/ex-react_ui_spec_for_cursor.md).
+
+Mockup-driven slices: also load [`docs/project-files/verification/design-patterns/mockup-verification.md`](../../docs/project-files/verification/design-patterns/mockup-verification.md).

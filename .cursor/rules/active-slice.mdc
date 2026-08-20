@@ -1,0 +1,18 @@
+---
+description: Scope build work to the active slice when active-slice is set
+alwaysApply: true
+---
+
+# Active slice scope
+
+When [`.cursor/active-slice`](../../.cursor/active-slice) exists and `SCOPE_OVERRIDE=false`:
+
+- Work only on `SLICE_ID`, `MODULE_ID`, and `FEATURE_NAME`(s) listed there.
+- Task authority: `docs/project-files/project-plan/slices/<SLICE_ID>-tasks.md`.
+- Requirements authority: `docs/requirements/slices/<SLICE_ID>/` (or `docs/requirements/requirements.md` during template bootstrap).
+- Code: `src/` pages, modules, and shared UI for that feature.
+- Tests: canonical paths in `tests/` per `tests/SCAFFOLD.md`.
+
+Do not edit other slices, unrelated modules, or platform files unless the human explicitly overrides scope in chat (`SCOPE_OVERRIDE=true` or a named exception).
+
+Copy template: [`.cursor/active-slice.example`](../../.cursor/active-slice.example).

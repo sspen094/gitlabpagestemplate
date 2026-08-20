@@ -1,0 +1,16 @@
+# Pin for agent-product-manager (GitLab)
+# Used by scripts/fetch-product-manager-agent.sh and vendor snapshot sync
+
+# HTTPS clone (used when vendor/ copy missing and no REPO_URL_SSH)
+REPO_URL=https://srvirqisgitlab1.rossvideo.com/manufacturing-data-infrastructure-and-applications/agent-product-manager.git
+
+# Optional: prefer SSH when developer machine has GitLab SSH keys (no PAT in env)
+# REPO_URL_SSH=git@srvirqisgitlab1.rossvideo.com:manufacturing-data-infrastructure-and-applications/agent-product-manager.git
+
+REF=main
+
+# Auth at fetch pull fallback (private GitLab) — NOT project ID:
+#   • Default: kit includes committed vendor/agent-product-manager/ — no pull
+#   • If vendor empty: export GITLAB_TOKEN or GITLAB_DEPLOY_TOKEN (read_repository)
+#   • Or:  REPO_URL_SSH + SSH keys
+# Project ID in project-connection.md is for GitLab API / MCP / Duo — after install.

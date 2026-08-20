@@ -1,0 +1,15 @@
+---
+description: Mid-slice pivot workflow when requirements change during build
+alwaysApply: false
+---
+
+# Slice deviations
+
+When scope changes **during** an active slice (same slice id, not a new slice):
+
+1. Human or PM agent drafts a deviation under `docs/requirements/slices/<SLICE_ID>/deviations/`.
+2. Use template: [`docs/product-manager-agent/slice-deviation-template.md`](../../docs/product-manager-agent/slice-deviation-template.md).
+3. **Re-sync** `docs/project-files/project-plan/slices/<SLICE_ID>-tasks.md` and `success-criteria/traceability.md` before continuing build.
+4. Note deviation id(s) in task file **Last synced** notes.
+
+Do not silently expand scope — deviations are the audit trail for pivots on the same `NN` slice.

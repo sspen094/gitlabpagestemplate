@@ -1,0 +1,12 @@
+---
+description: Cleanup mode — lint, format, and run fast tests
+alwaysApply: false
+---
+
+# Cleanup mode (`/cleanup`)
+
+When the user invokes **`/cleanup`**:
+
+Follow [`.cursor/commands/cleanup.md`](../commands/cleanup.md): run `npm test`, lint/format when configured, `npm run build`, and report failures with fixes.
+
+Do not refactor unrelated code during cleanup unless required to fix a failure.

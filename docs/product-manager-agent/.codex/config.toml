@@ -1,0 +1,9 @@
+# Codex MCP — GitLab (secrets loaded from .env.local)
+# Requires Node.js/npx on PATH.
+
+[projects."/Users/sivany/Code/agent-product-manager"]
+trust_level = "trusted"
+
+[mcp_servers.gitlab]
+command = "/bin/bash"
+args = ["-lc", "set -a && source \"/Users/sivany/Code/agent-product-manager/.env.local\" && set +a && exec npx -y @zereight/mcp-gitlab"]

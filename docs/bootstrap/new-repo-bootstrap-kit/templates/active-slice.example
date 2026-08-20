@@ -1,0 +1,14 @@
+# Active slice — copy to .cursor/active-slice (gitignored, per developer/session).
+#
+#   cp .cursor/active-slice.example .cursor/active-slice
+#
+# MODULE_ID must match **Module(s):** in the slice requirements header.
+# See docs/implemented-design/design/modules.md and docs/developer.md §2.
+
+SLICE_ID=01-your-feature-v1
+MODULE_ID=foundations
+FEATURE_NAME=your-feature
+# FEATURE_NAMES=feature-a,feature-b   # when slice spans multiple feature folders
+BRANCH=01-your-feature-v1
+DEVELOPER=your.name
+SCOPE_OVERRIDE=false

@@ -1,0 +1,14 @@
+---
+description: Verification with optional Codex second opinion (/v+codex)
+alwaysApply: false
+---
+
+# Verification + Codex (`/v+codex`)
+
+When the user invokes **`/v+codex`**:
+
+1. Complete Phase 1 per [`.cursor/commands/vcodex.md`](../commands/vcodex.md) and [`ex-react-verify-codex` skill](../skills/ex-react-verify-codex/SKILL.md).
+2. Run Codex read-only review **only** when all applicable SC-xx/DP-xx items pass.
+3. Codex never modifies code — Cursor may fix issues in a follow-up turn.
+
+Skip Codex silently only when the user explicitly opts out or Codex CLI is not configured (document that in the report).

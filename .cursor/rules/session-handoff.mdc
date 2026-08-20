@@ -1,0 +1,17 @@
+---
+description: Read HANDOFF.md at chat start for session continuity
+alwaysApply: true
+---
+
+# Session handoff
+
+At the **start of every new chat**, before planning or editing:
+
+1. Read the **first ~120 lines** of [`HANDOFF.md`](../../HANDOFF.md) at repo root.
+2. If doing feature work, read [`.cursor/active-slice`](../../.cursor/active-slice) when it exists.
+3. If fixing QA bugs with ClickUp, read [`.cursor/active-defects`](../../.cursor/active-defects) when it exists.
+4. Then read [`AGENTS.md`](../../AGENTS.md) and [`.cursor/skills/ex-react-core/SKILL.md`](../../.cursor/skills/ex-react-core/SKILL.md).
+
+The **stop hook** refreshes **Last updated** and **Repository state** in `HANDOFF.md` automatically — do not paste full `git status` into HANDOFF during sessions.
+
+Human onboarding: [`docs/developer.md`](../../docs/developer.md).

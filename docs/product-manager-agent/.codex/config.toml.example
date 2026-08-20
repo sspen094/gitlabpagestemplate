@@ -1,0 +1,15 @@
+# Codex MCP — GitLab connection
+# Copy to ~/.codex/config.toml or .codex/config.toml in a trusted project root.
+# Requires Node.js/npx on PATH. See project-connection.md for PAT setup.
+
+[projects."/FILL_ABSOLUTE_PATH_TO_PRODUCT_REPO"]
+trust_level = "trusted"
+
+[mcp_servers.gitlab]
+command = "npx"
+args = ["-y", "@zereight/mcp-gitlab"]
+
+[mcp_servers.gitlab.env]
+GITLAB_PERSONAL_ACCESS_TOKEN = "FILL_glpat-token"
+GITLAB_API_URL = "https://FILL_GITLAB_HOST/api/v4"
+GITLAB_READ_ONLY_MODE = "false"

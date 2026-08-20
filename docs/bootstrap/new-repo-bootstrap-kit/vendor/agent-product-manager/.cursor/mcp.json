@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "gitlab": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@zereight/mcp-gitlab"],
+      "envFile": "${workspaceFolder}/.env.local"
+    }
+  }
+}
