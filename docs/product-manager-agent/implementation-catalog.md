@@ -10,8 +10,8 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 | Field | Value |
 |-------|-------|
-| **Next slice id** | `01` |
-| **Last updated** | 2026-08-20 |
+| **Next slice id** | `02` |
+| **Last updated** | 2026-08-20 (Slice 01 shipped) |
 
 ---
 
@@ -19,7 +19,9 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 | Slice | Status | Module(s) | Feature(s) | Summary |
 |-------|--------|-----------|------------|---------|
-| _(none yet)_ | — | — | — | Agent/Cursor workflow seeded; app not scaffolded |
+| 00-app-scaffold-and-deploy | Shipped 2026-08-20 | platform | app-scaffold | Vite + React TS SPA, `BASE_URL` Pages base, GitHub Actions deploy, placeholder shell |
+| 01-text-management | Shipped 2026-08-20 | text | t-lookup | Central `defaultText` + `t()` / `useText()`; missing-key fallback; `TextProvider` for alternate sets |
+| 01-text-management | Shipped 2026-08-20 | text | t-lookup | Central `defaultText` tree, `t()` / `useText()`, missing-key fallback, `TextProvider` swap |
 
 ---
 
@@ -27,10 +29,10 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 | Area | Status | Notes |
 |------|--------|-------|
-| Hosting | Planned | GitHub Pages static build |
+| Hosting | Shipped | GitHub Pages via Actions; Vite `base` from `BASE_URL` |
 | Navigation | Planned | Top navbar with sections and dropdowns |
 | Page modules | Planned | Hero, text, image, cards, section wrapper |
-| Text lookup | Planned | `t()` with `[page].[section].[item]` keys |
+| Text lookup | Shipped | `t()` with `[page].[section].[item]` keys; edit `text-config.ts` |
 | Updatable content | Planned | Google Sheets published data; fail gracefully |
 | HTTP API | N/A | No custom backend |
 | App database | N/A | No owned database |
@@ -39,11 +41,23 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 ## Features by module
 
+### platform
+
+| Feature id | Routes / entry | Database | Status |
+|------------|----------------|----------|--------|
+| app-scaffold | `/` (`src/App.tsx`) | none | Shipped — [as-built](../modules/platform/features/app-scaffold/README.md) |
+
+### text
+
+| Feature id | Routes / entry | Database | Status |
+|------------|----------------|----------|--------|
+| t-lookup | Shell via `useText()` (`src/App.tsx`); config `text-config.ts` | none | Shipped — [as-built](../modules/text/features/t-lookup/README.md) |
+
 ### foundations
 
 | Feature id | Routes / entry | Database | Status |
 |------------|----------------|----------|--------|
-| _example_ | `/` | none | Planned |
+| _reserved_ | — | none | Planned — later slices |
 
 ---
 

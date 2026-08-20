@@ -17,9 +17,9 @@ Master checklist for the layered test tree. Update when a folder moves from **Pl
 
 | Path | Status | Notes |
 |------|--------|-------|
-| `tests/README.md` | Planned | Layout and run commands |
-| `tests/SCAFFOLD.md` | Planned | This file |
-| `tests/unit/` | Planned | Component / unit tests (`npm test`) |
+| `tests/README.md` | Populated | Layout and run commands |
+| `tests/SCAFFOLD.md` | Populated | This file |
+| `tests/unit/` | Populated | `vite-base`, `app-shell`, `static-build`, `t-lookup` (`npm test`) |
 | `tests/end_to_end/smoke/` | Planned | Playwright UI smoke |
 | `tests/validation/` | Shim | **Do not add new tests here** |
 
@@ -27,7 +27,7 @@ Master checklist for the layered test tree. Update when a folder moves from **Pl
 
 | Path | Purpose |
 |------|---------|
-| `unit/` | Fast tests — no live network |
+| `unit/` | Fast tests — no live network (static-build test runs Vite locally) |
 | `integration/` | Google Sheets published-data mapping (when added) |
 | `end_to_end/workflows/` | Multi-page flows |
 | `end_to_end/smoke/` | UI smoke / Playwright |

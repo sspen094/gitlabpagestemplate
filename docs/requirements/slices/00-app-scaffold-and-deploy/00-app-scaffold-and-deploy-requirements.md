@@ -1,6 +1,6 @@
 # Slice 00 — app-scaffold-and-deploy (requirements)
 
-**Status:** Approved (plan) — 2026-08-20
+**Status:** Shipped — 2026-08-20
 **Owner:** Template maintainer  
 **Last updated:** 2026-08-20  
 **Slice id:** 00  

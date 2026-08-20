@@ -28,7 +28,10 @@ npm run build
 
 | Id | Area | Script | Slice / trigger | Notes |
 |----|------|--------|-----------------|-------|
-| | | | | |
+| R-00-build | Static build | `npm run build` | 00-app-scaffold-and-deploy | GitHub Pages `dist/` |
+| R-00-test | Unit | `npm test` | 00-app-scaffold-and-deploy | Vitest Layer 1 |
+| R-01-test | Unit | `npm test` | 01-text-management | Includes `t-lookup` |
+| R-01-build | Static build | `npm run build` | 01-text-management | Confirms copy bundles into `dist/` |
 
 _Add one row per slice closeout script. Do not add new tests under `tests/validation/`._
 
@@ -38,7 +41,10 @@ _Add one row per slice closeout script. Do not add new tests under `tests/valida
 
 | Id | Area | Path | Slice / trigger |
 |----|------|------|-----------------|
-| | | | |
+| U-00-base | Pages base | `tests/unit/vite-base.test.ts` | 00-app-scaffold-and-deploy |
+| U-00-shell | App shell | `tests/unit/app-shell.test.tsx` | 00-app-scaffold-and-deploy |
+| U-00-dist | Static output + base | `tests/unit/static-build.test.ts` | 00-app-scaffold-and-deploy |
+| U-01-t | `t()` lookup, fallback, alternate set | `tests/unit/t-lookup.test.tsx` | 01-text-management |
 
 ---
 
@@ -48,7 +54,7 @@ When fixing a defect, add a row here **before** closeout:
 
 | Defect id | Script / test | Added |
 |-----------|---------------|-------|
-| _…_ | _…_ | YYYY-MM-DD |
+| Pages blank (JS 404 at `/assets`) | Workflow derives `/<repo>/`; `U-00-dist` | 2026-08-20 |
 
 ---
 

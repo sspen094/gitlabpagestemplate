@@ -124,6 +124,8 @@ npm run dev
 
 Production is a static `npm run build` deployed to GitHub Pages. There is no SQL, IIS, or FastAPI layer.
 
+**Static copy:** edit strings in `src/modules/text/t-lookup/text-config.ts`. Components use `t('page.section.item')`. Local `npm run dev` hot-reloads those edits; GitHub Pages updates only after a deploy.
+
 ---
 
 ## 8. Defects
