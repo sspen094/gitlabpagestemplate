@@ -100,7 +100,7 @@ Stop when the tasks file matches requirements.
 | **`.cursor/skills/ex-react-slice-plan/SKILL.md`** | Sync `*-tasks.md`, SCAFFOLD, success-criteria, regression closeout — **recommended**. |
 | **`.cursor/skills/ex-react-manual-confirmation/SKILL.md`** | Living change checklist during human review. |
 | **`.cursor/skills/ex-react-verify-codex/SKILL.md`** | **Optional** — `/v+codex` workflow. |
-| **`/start-phase`** | Plan then implement the next unchecked task. |
+| **`/start-phase`** | Plan then implement the next incomplete **phase** (all remaining tasks in that phase). |
 | **`/v`** | Verification mode — implement, test, smoke the page. |
 | **`/cleanup`** | Lint + format + unit tests + build. |
 | **`/v+codex`** | **Optional** — criteria gate + Codex review. |
