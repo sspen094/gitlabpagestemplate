@@ -12,7 +12,9 @@ npm run dev
 
 `npm run build` writes static files to `dist/`. `npm test` runs the unit suite.
 
-**Site copy:** edit strings in `src/modules/text/t-lookup/text-config.ts`. The landing page looks them up with `t('page.section.item')`.
+**Site copy:** edit strings in `src/modules/text/t-lookup/text-config.ts`.
+
+**Pages:** add or reorder modules in `src/modules/pages/modular-pages/pages-config.ts`. Hash routes: `#/` (home) and `#/demo` (baseline modules + calendars).
 
 ## Base path (forks)
 

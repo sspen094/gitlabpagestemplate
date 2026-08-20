@@ -126,6 +126,8 @@ Production is a static `npm run build` deployed to GitHub Pages. There is no SQL
 
 **Static copy:** edit strings in `src/modules/text/t-lookup/text-config.ts`. Components use `t('page.section.item')`. Local `npm run dev` hot-reloads those edits; GitHub Pages updates only after a deploy.
 
+**Pages:** edit `src/modules/pages/modular-pages/pages-config.ts` to add pages or module instances. Preview `#/` and `#/demo`.
+
 ---
 
 ## 8. Defects

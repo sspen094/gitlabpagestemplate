@@ -62,7 +62,9 @@ body {
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4 {
   font-family: var(--heading);
   font-weight: 500;
   color: var(--text-h);
@@ -85,6 +87,12 @@ h2 {
   @media (max-width: 1024px) {
     font-size: 20px;
   }
+}
+h3,
+h4 {
+  font-size: 18px;
+  line-height: 125%;
+  margin: 0;
 }
 p {
   margin: 0;

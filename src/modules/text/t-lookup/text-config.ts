@@ -25,6 +25,51 @@ export const defaultText: TextTree = {
     hero: {
       title: 'My Website Template',
       body: 'This is a static React template for GitHub Pages. Content modules and live data sources are not configured yet.',
+      cta: 'See demo',
+    },
+  },
+  demo: {
+    hero: {
+      title: 'Modular demo',
+      subtitle: 'Baseline modules rendered from page configuration.',
+      cta: 'Back home',
+    },
+    intro: {
+      title: 'Demo page',
+      body: 'This page is registered from configuration only — no custom page component.',
+    },
+    image: {
+      caption: 'Image block with required alt text',
+    },
+    section: {
+      title: 'Grouped modules',
+    },
+    cards: {
+      title: 'Card examples',
+      oneTitle: 'First card',
+      oneBody: 'Config-driven card copy.',
+      twoTitle: 'Second card',
+      twoBody: 'Cards sit in a responsive grid.',
+    },
+    calendar: {
+      title: 'Upcoming events',
+      monthTitle: 'Event calendar',
+      oneTitle: 'Kickoff',
+      oneDetail: 'Example static event.',
+      twoTitle: 'Review',
+      twoDetail: 'Calendar entries come from config in this slice.',
+    },
+  },
+  app: {
+    notFound: {
+      body: 'Page not found.',
+    },
+  },
+  modules: {
+    fallback: {
+      unknownType: 'This module type is not registered.',
+      invalid: 'This module could not be displayed.',
+      unhydrated: 'This content is not available yet.',
     },
   },
 }
