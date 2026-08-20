@@ -1,9 +1,10 @@
 # Slice 00 — app-scaffold-and-deploy (tasks)
 
 **Requirements:** `docs/requirements/slices/00-app-scaffold-and-deploy/00-app-scaffold-and-deploy-requirements.md`  
-**Last synced:** 2026-08-20
+**Last synced:** 2026-08-20  
+**Status:** build in progress — 2026-08-20
 
-Executable task list for this vertical slice. Synced from human requirements. Do not start implementation until the human approves this file and `success-criteria/traceability.md`.
+Executable task list for this vertical slice. Synced from human requirements. Plan approved; implementation proceeds via `/start-phase`.
 
 ## Acceptance criteria map (required at task sync)
 
@@ -26,16 +27,16 @@ Executable task list for this vertical slice. Synced from human requirements. Do
 
 ## Phase 1 — Scaffold & build config
 
-- [ ] Scaffold a Vite + React app (`src/`, entry, `index.html`) at repo root
-- [ ] Add `package.json` scripts: `dev`, `build`, `preview`, `test`
-- [ ] Configure Vite `base` from a single env/config source (`.env.example` → `.env.local`) for GitHub Pages path
-- [ ] Add `.env.example` documenting `BASE_URL` / Pages path (no secrets)
-- [ ] Confirm `npm run build` emits static assets only into `dist/`
+- [x] Scaffold a Vite + React app (`src/`, entry, `index.html`) at repo root — **2026-08-20** Vite + React TS at repo root; human confirmed `npm run dev`
+- [x] Add `package.json` scripts: `dev`, `build`, `preview`, `test` — **2026-08-20** `vitest run`; `npm test` 3 passed
+- [x] Configure Vite `base` from a single env/config source (`.env.example` → `.env.local`) for GitHub Pages path — **2026-08-20** `BASE_URL` → `normalizePagesBase` in Vite config
+- [x] Add `.env.example` documenting `BASE_URL` / Pages path (no secrets) — **2026-08-20** committed example; `.env.local` gitignored
+- [x] Confirm `npm run build` emits static assets only into `dist/` — **2026-08-20** HTML/CSS/JS/images only; sample `BASE_URL=/ex-react/` in asset URLs
 
 ## Phase 2 — App shell
 
-- [ ] Implement a minimal app shell / placeholder landing view with no external-data dependency
-- [ ] Ensure the shell renders when no data source is configured (graceful default)
+- [x] Implement a minimal app shell / placeholder landing view with no external-data dependency — **2026-08-20** static Ex-React landing in `src/App.tsx`; no fetch
+- [x] Ensure the shell renders when no data source is configured (graceful default) — **2026-08-20** human confirmed `/` with no Sheets/data env
 
 ## Phase 3 — Deploy & CI
 

@@ -61,7 +61,7 @@ No FastAPI, SQL Server, IIS, or Python app package in this repo.
 1. Human approves requirements under `docs/requirements/slices/NN-name/` (or `requirements.md` during template bootstrap).
 2. Sync tasks with [`ex-react-slice-plan`](../ex-react-slice-plan/SKILL.md) — includes **Manual confirmation** (change checklist + verbal gate) **before** the **mandatory Final phase** (SC-xx, tests create + register + **execute**, regression-plan, SCAFFOLD, as-built).
 3. Set `.cursor/active-slice` (`SLICE_ID`, `MODULE_ID`, `FEATURE_NAME`, `BRANCH`).
-4. Execute next unchecked task in `*-tasks.md`.
+4. Execute the next incomplete **phase** in `*-tasks.md` (`/start-phase` — all remaining tasks in that phase).
 5. After implementation phases: enter **Manual confirmation** — log every human change request **and** review defect on that phase checklist (see [`ex-react-manual-confirmation`](../ex-react-manual-confirmation/SKILL.md)), walk the list, then obtain **verbal confirmation** before Final.
 6. Closeout (Final): evaluate SC-xx, update `traceability.md`, run tests, update feature as-built + catalog, **and** complete the **project-wide docs pass** so the overall documentation tree matches the shipped product.
 
