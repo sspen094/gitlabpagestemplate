@@ -31,3 +31,4 @@ README.md (repo) → docs/README.md → layer hub → specific doc
 |---------|--------|----------|
 | app-scaffold | platform | [modules/platform/features/app-scaffold](modules/platform/features/app-scaffold/README.md) |
 | t-lookup | text | [modules/text/features/t-lookup](modules/text/features/t-lookup/README.md) |
+| modular-pages | pages | [modules/pages/features/modular-pages](modules/pages/features/modular-pages/README.md) |

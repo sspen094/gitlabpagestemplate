@@ -8,4 +8,4 @@
 
 Local run: `Copy-Item .env.example .env.local` then `npm run dev`. See the root [`README.md`](../../README.md).
 
-**Slice 01:** developer-authored copy is not env-driven. Edit `src/modules/text/t-lookup/text-config.ts`. No new env keys.
+**Slice 02:** page composition is code config (`pages-config.ts`), not env. No new env keys. Published sheet URLs remain Slice 04.

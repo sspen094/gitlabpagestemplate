@@ -23,11 +23,147 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-width: 40rem;
+  max-width: 48rem;
 }
 
 .app-shell__main h1 {
   margin: 0;
+}
+
+.page-composer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.module-placeholder,
+.module-fallback,
+.module-hero,
+.module-text,
+.module-image,
+.module-cards,
+.module-section,
+.module-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.module-fallback {
+  color: var(--text-h);
+}
+
+.module-hero__subtitle {
+  font-size: 1.1em;
+  color: var(--text-h);
+}
+
+.module-hero__media {
+  max-width: 8rem;
+  height: auto;
+}
+
+.module-cta {
+  color: var(--accent);
+  width: fit-content;
+}
+
+.module-image__figure {
+  margin: 0;
+}
+
+.module-image img {
+  max-width: 8rem;
+  height: auto;
+}
+
+.module-section__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.module-cards__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.module-cards__list--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 12px;
+}
+
+.module-cards__list--list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.module-card,
+.module-calendar__event {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.module-calendar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.module-calendar__title {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.module-calendar__grid {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  font-size: 0.85em;
+}
+
+.module-calendar__grid caption {
+  text-align: left;
+  color: var(--text-h);
+  font-weight: 600;
+  padding-bottom: 8px;
+}
+
+.module-calendar__grid th {
+  text-align: left;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.module-calendar__grid td {
+  border: 1px solid var(--border);
+  vertical-align: top;
+  height: 4.5rem;
+  padding: 4px 8px;
+}
+
+.module-calendar__day time {
+  color: var(--text-h);
+}
+
+.module-calendar__day-event {
+  margin-top: 4px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  background: var(--accent-bg);
+  color: var(--text-h);
+  font-size: 0.9em;
 }
 
 @media (max-width: 1024px) {

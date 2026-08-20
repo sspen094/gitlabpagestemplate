@@ -32,6 +32,8 @@ npm run build
 | R-00-test | Unit | `npm test` | 00-app-scaffold-and-deploy | Vitest Layer 1 |
 | R-01-test | Unit | `npm test` | 01-text-management | Includes `t-lookup` |
 | R-01-build | Static build | `npm run build` | 01-text-management | Confirms copy bundles into `dist/` |
+| R-02-test | Unit | `npm test` | 02-modular-page-system | Composer, definition model, baseline modules + calendar |
+| R-02-build | Static build | `npm run build` | 02-modular-page-system | Confirms page modules bundle into `dist/` |
 
 _Add one row per slice closeout script. Do not add new tests under `tests/validation/`._
 
@@ -45,6 +47,9 @@ _Add one row per slice closeout script. Do not add new tests under `tests/valida
 | U-00-shell | App shell | `tests/unit/app-shell.test.tsx` | 00-app-scaffold-and-deploy |
 | U-00-dist | Static output + base | `tests/unit/static-build.test.ts` | 00-app-scaffold-and-deploy |
 | U-01-t | `t()` lookup, fallback, alternate set | `tests/unit/t-lookup.test.tsx` | 01-text-management |
+| U-02-composer | Page composer, fallback, config-only page | `tests/unit/page-composer.test.tsx` | 02-modular-page-system |
+| U-02-model | Definition model + type validation | `tests/unit/module-definition.test.ts` | 02-modular-page-system |
+| U-02-modules | Baseline modules, a11y, calendar layouts | `tests/unit/baseline-modules.test.tsx` | 02-modular-page-system |
 
 ---
 
