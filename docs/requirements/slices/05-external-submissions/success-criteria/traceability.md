@@ -2,7 +2,7 @@
 
 **Chain:** Requirements AC → SC-xx → verify method → PASS | FAIL | N/A → evidence
 
-**Last updated:** 2026-08-20 _(task sync)_
+**Last updated:** 2026-08-21 _(plan approved; results remain planned until closeout)_
 
 | AC | Requirement (short) | SC-xx | Phase | Verify (planned) | Result | Evidence |
 |----|---------------------|-------|-------|------------------|--------|----------|

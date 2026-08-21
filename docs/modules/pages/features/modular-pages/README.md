@@ -8,7 +8,7 @@
 
 ## What it is
 
-Pages are registered as configuration (`id`, `path`, ordered `modules`). Hash routes are derived from that list. Each instance goes through one pipeline: validate → registry component or fallback. There is no per-page React component.
+Pages are registered as configuration (`id`, `path`, ordered `modules`). Hash routes are derived from that list. Each instance goes through one pipeline: validate → fallback, `UpdatableModule`, or registry component. There is no per-page React component.
 
 ## Runtime surface
 
@@ -18,10 +18,11 @@ Pages are registered as configuration (`id`, `path`, ordered `modules`). Hash ro
 | `src/modules/pages/modular-pages/validate.ts` | Structural + type-specific config checks |
 | `src/modules/pages/modular-pages/registry.ts` | Module type → component |
 | `src/modules/pages/modular-pages/pipeline.tsx` | `ModulePipeline` + `PageComposer` |
-| `src/modules/pages/modular-pages/pages-config.ts` | `defaultPages` (home + demo) |
+| `src/modules/pages/modular-pages/pages-config.ts` | `defaultPages` (home, demo, About/Contact/Members) |
 | `src/modules/pages/modular-pages/PageRoutes.tsx` | Hash routes from page config |
 | `src/modules/pages/modular-pages/heading-level.tsx` | Nested heading levels |
-| Baseline modules | `HeroModule`, `TextBlockModule`, `ImageBlockModule`, `CardListModule`, `SectionModule`, `CalendarModule` |
+| `src/modules/pages/modular-pages/calendar-events.ts` | Event shape + date helpers, including upcoming-event selection |
+| Baseline modules | `HeroModule`, `TextBlockModule`, `ImageBlockModule`, `CardListModule`, `SectionModule`, `CalendarModule`, `ContactInfoModule` |
 | `PlaceholderModule` | Kept for tests / leftover config |
 
 ## How to add a page
@@ -37,17 +38,19 @@ Append an entry to `defaultPages` in `pages-config.ts` (`id`, `path`, `modules`)
 | `image` | `src` + required `alt`; optional caption |
 | `card-list` | `entries` with titles; `layout` `grid` (default, auto-fit) or `list` |
 | `section` | `children` — nested instances through the same pipeline |
-| `calendar` | `events` with `date` (`YYYY-MM-DD`) + title; `layout` `list` (default) or `month` / `grid`; optional `month` `YYYY-MM` |
+| `calendar` | `events` with `date` (`YYYY-MM-DD`) + title; `layout` `list` (default), `month` / `grid`, or `hybrid` / `agenda`; optional `month` `YYYY-MM`, `upcomingCount`, `upcomingTitle` / `upcomingTitleKey` |
+| `contact` | Label/value list; `type` `email` / `phone` / `url` / `plain` |
 | `placeholder` | Title required; Phase 1 stub |
 
-Unknown types, missing required fields, or a calendar `month` that is not `YYYY-MM` render `FallbackModule`. `updatable` is reserved (Slice 04 hydrates `dataSource`); this slice still renders from `config` when valid.
+Unknown types, missing required fields, or a calendar `month` that is not `YYYY-MM` render `FallbackModule`. `mode: 'updatable'` goes through Slice 04 `UpdatableModule` (static `config` is the shell).
 
 ## Calendar layouts (D01 + Manual confirmation)
 
-The same event rows feed both layouts (`date` column + display/title column) so Slice 04 can map a published sheet later. Fetching is not in this slice.
+The same event rows feed every layout (`date` column + display/title column), so a published sheet maps onto any of them (Slice 04 hydration).
 
 - **List:** dated entries with optional detail.
-- **Month grid:** HTML table; events on their day; events outside the resolved month are omitted.
+- **Month grid:** HTML table; events on their day; events outside the viewed month are omitted. Previous/Next steps one month at a time, limited to January of the current year through December of the following year; a configured month outside that window clamps to the nearest bound.
+- **Hybrid:** next-events cards beside the month grid. `selectUpcomingEvents` in `calendar-events.ts` takes up to `upcomingCount` (default 5) dated events from today forward, soonest first, and falls back to the most recent past events so the cards are never empty; rows whose `date` is not an ISO day are kept in config order. The grid still receives every event and shares the same year-limited stepping. Two columns above 1024px, stacked below.
 
 ## Accessibility
 
@@ -60,14 +63,14 @@ The same event rows feed both layouts (`date` column + display/title column) so 
 | Hash path | Page id |
 |-----------|---------|
 | `#/` | `home` — hero + CTA to demo |
-| `#/demo` | `demo` — all baseline types, including list + month calendars |
+| `#/demo` | `demo` — one sheet-backed example per updatable type; the calendar uses the hybrid layout |
 | `#/about` | `about` — section landing (Slice 03 nav target) |
-| `#/about/contact` | `contact` — About subsection |
+| `#/about/contact` | `contact` — hero + sheet-backed `contact-info` |
 | `#/about/members` | `members` — About subsection |
 
 ## Out of scope
 
-- Google Sheets hydration (Slice 04)
+- Sheets fetch client (owned by [sheets-hydration](../../../updatable-content/features/sheets-hydration/README.md))
 - FAQ, CTA-only, timeline, gallery, embed module types
 
 Navbar chrome shipped in Slice 03 — [navbar as-built](../../../navigation/features/navbar/README.md). About/Contact/Members heroes exist so dropdown targets resolve.
@@ -76,4 +79,4 @@ Navbar chrome shipped in Slice 03 — [navbar as-built](../../../navigation/feat
 
 - `tests/unit/page-composer.test.tsx` — ordered modules, unknown-type fallback, config-only extra page
 - `tests/unit/module-definition.test.ts` — model, `dataSource`, type-specific fallback
-- `tests/unit/baseline-modules.test.tsx` — hero/text/image/cards/section/calendar; heading levels; missing alt; month-grid day placement
+- `tests/unit/baseline-modules.test.tsx` — hero/text/image/cards/section/calendar/contact; heading levels; missing alt; month-grid day placement; hybrid cards + grid; upcoming-event selection; month stepping; demo + contact composition

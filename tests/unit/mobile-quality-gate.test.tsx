@@ -3,9 +3,8 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { cleanup, render } from '@testing-library/react'
-import { MemoryRouter } from 'react-router'
 import { afterEach, describe, expect, it } from 'vitest'
-import { AppShell } from '../../src/App.tsx'
+import { PageComposer } from '../../src/modules/pages/modular-pages/pipeline.tsx'
 import { stubMatchMedia } from './stub-match-media.ts'
 
 afterEach(() => {
@@ -38,9 +37,21 @@ describe('mobile layout quality gate', () => {
   it('puts the month calendar in a horizontal scroll wrapper', () => {
     stubMatchMedia(false)
     render(
-      <MemoryRouter initialEntries={['/demo']}>
-        <AppShell />
-      </MemoryRouter>,
+      <PageComposer
+        modules={[
+          {
+            id: 'month',
+            type: 'calendar',
+            mode: 'static',
+            config: {
+              title: 'Event calendar',
+              layout: 'month',
+              month: '2026-09',
+              events: [{ date: '2026-09-01', title: 'Kickoff' }],
+            },
+          },
+        ]}
+      />,
     )
     expect(document.querySelector('.module-calendar__grid-wrap')).toBeTruthy()
     expect(

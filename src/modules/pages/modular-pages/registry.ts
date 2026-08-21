@@ -1,5 +1,6 @@
 import { CalendarModule } from './CalendarModule.tsx'
 import { CardListModule } from './CardListModule.tsx'
+import { ContactInfoModule } from './ContactInfoModule.tsx'
 import { HeroModule } from './HeroModule.tsx'
 import { ImageBlockModule } from './ImageBlockModule.tsx'
 import { PlaceholderModule } from './PlaceholderModule.tsx'
@@ -28,3 +29,4 @@ registerModule('image', ImageBlockModule)
 registerModule('card-list', CardListModule)
 registerModule('section', SectionModule)
 registerModule('calendar', CalendarModule)
+registerModule('contact', ContactInfoModule)

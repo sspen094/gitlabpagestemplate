@@ -1,16 +1,21 @@
 import { createElement } from 'react'
+import { UpdatableModule } from '../../updatable-content/sheets-hydration/UpdatableModule.tsx'
 import { FallbackModule } from './FallbackModule.tsx'
 import { HeadingLevelProvider } from './heading-level.tsx'
 import { getModuleComponent, getRegisteredTypes } from './registry.ts'
 import type { ModuleInstance } from './types.ts'
 import { prepareModule } from './validate.ts'
 
-/** Shared static + future-updatable path: validate → fallback or registry component. */
+/** Shared path: validate → fallback, updatable hydration boundary, or component. */
 export function ModulePipeline({ instance }: { instance: unknown }) {
   const prepared = prepareModule(instance, getRegisteredTypes())
 
   if (prepared.renderMode === 'fallback') {
     return <FallbackModule prepared={prepared} />
+  }
+
+  if (prepared.instance.mode === 'updatable') {
+    return <UpdatableModule prepared={prepared} />
   }
 
   const Component = getModuleComponent(prepared.instance.type)

@@ -208,7 +208,13 @@ function validateNamedEntries(
   return []
 }
 
-const CALENDAR_LAYOUTS: ReadonlySet<string> = new Set(['list', 'month', 'grid'])
+const CALENDAR_LAYOUTS: ReadonlySet<string> = new Set([
+  'list',
+  'month',
+  'grid',
+  'hybrid',
+  'agenda',
+])
 
 function validateCalendar(instance: ModuleInstance): ValidationIssue[] {
   const events = instance.config.events
@@ -229,13 +235,23 @@ function validateCalendar(instance: ModuleInstance): ValidationIssue[] {
   const layout = readString(instance.config.layout)
   if (layout && !CALENDAR_LAYOUTS.has(layout)) {
     return [
-      missingConfig('calendar layout must be list, month, or grid'),
+      missingConfig('calendar layout must be list, month, grid, or hybrid'),
     ]
   }
 
   const month = readString(instance.config.month)
   if (month && !/^\d{4}-(0[1-9]|1[0-2])$/.test(month)) {
     return [missingConfig('calendar month must be YYYY-MM')]
+  }
+
+  const upcomingCount = instance.config.upcomingCount
+  if (
+    upcomingCount !== undefined &&
+    !(Number.isInteger(upcomingCount) && (upcomingCount as number) > 0)
+  ) {
+    return [
+      missingConfig('calendar upcomingCount must be a positive whole number'),
+    ]
   }
 
   return []

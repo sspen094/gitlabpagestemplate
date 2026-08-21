@@ -33,3 +33,4 @@ README.md (repo) → docs/README.md → layer hub → specific doc
 | t-lookup | text | [modules/text/features/t-lookup](modules/text/features/t-lookup/README.md) |
 | modular-pages | pages | [modules/pages/features/modular-pages](modules/pages/features/modular-pages/README.md) |
 | navbar | navigation | [modules/navigation/features/navbar](modules/navigation/features/navbar/README.md) |
+| sheets-hydration | updatable-content | [modules/updatable-content/features/sheets-hydration](modules/updatable-content/features/sheets-hydration/README.md) |

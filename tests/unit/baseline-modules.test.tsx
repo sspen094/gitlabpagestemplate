@@ -1,9 +1,15 @@
 /** @vitest-environment jsdom */
 
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router'
 import { afterEach, describe, expect, it } from 'vitest'
 import { AppShell } from '../../src/App.tsx'
+import {
+  canStepMonth,
+  clampMonthToSteppingRange,
+  selectUpcomingEvents,
+  type CalendarEvent,
+} from '../../src/modules/pages/modular-pages/calendar-events.ts'
 import { PageComposer } from '../../src/modules/pages/modular-pages/pipeline.tsx'
 import { defaultText } from '../../src/modules/text/t-lookup/text-config.ts'
 
@@ -148,6 +154,91 @@ describe('calendar layouts', () => {
     expect(grid.textContent).not.toContain('Later')
   })
 
+  it('pairs next-event cards with the month grid when layout is hybrid', () => {
+    render(
+      <PageComposer
+        modules={[
+          {
+            id: 'events',
+            type: 'calendar',
+            mode: 'static',
+            config: {
+              title: 'Event calendar',
+              layout: 'hybrid',
+              upcomingCount: 2,
+              events: [
+                { id: 'past', date: '2020-01-05', title: 'Old news' },
+                { id: 'third', date: '2026-12-02', title: 'Third up' },
+                { id: 'first', date: '2026-10-02', title: 'First up' },
+                { id: 'second', date: '2026-11-02', title: 'Second up' },
+              ],
+            },
+          },
+        ]}
+      />,
+    )
+
+    const cards = document.querySelector('.module-calendar__upcoming')
+    expect(cards?.textContent).toContain('First up')
+    expect(cards?.textContent).toContain('Second up')
+    expect(cards?.textContent).not.toContain('Third up')
+    expect(cards?.textContent).not.toContain('Old news')
+    expect(screen.getByRole('heading', { level: 3, name: 'Next events' })).toBeTruthy()
+    expect(screen.getByRole('table', { name: 'October 2026' })).toBeTruthy()
+  })
+
+  it('steps the month grid within this year and next year only', () => {
+    render(
+      <PageComposer
+        modules={[
+          {
+            id: 'events',
+            type: 'calendar',
+            mode: 'static',
+            config: {
+              title: 'Event calendar',
+              layout: 'month',
+              month: '2026-09',
+              events: [{ date: '2026-09-01', title: 'Kickoff' }],
+            },
+          },
+        ]}
+      />,
+    )
+
+    expect(screen.getByRole('table', { name: 'September 2026' })).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Next month' }))
+    expect(screen.getByRole('table', { name: 'October 2026' })).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Previous month' }))
+    expect(screen.getByRole('table', { name: 'September 2026' })).toBeTruthy()
+  })
+
+  it('clamps a month outside this year and next, and disables the far-end buttons', () => {
+    render(
+      <PageComposer
+        modules={[
+          {
+            id: 'events',
+            type: 'calendar',
+            mode: 'static',
+            config: {
+              title: 'Event calendar',
+              layout: 'month',
+              month: '2029-03',
+              events: [{ date: '2026-09-01', title: 'Kickoff' }],
+            },
+          },
+        ]}
+      />,
+    )
+
+    expect(screen.getByRole('table', { name: 'December 2027' })).toBeTruthy()
+    expect(
+      (screen.getByRole('button', { name: 'Next month' }) as HTMLButtonElement)
+        .disabled,
+    ).toBe(true)
+  })
+
   it('falls back when the month layout config is malformed', () => {
     render(
       <PageComposer
@@ -173,8 +264,67 @@ describe('calendar layouts', () => {
   })
 })
 
+describe('upcoming event selection', () => {
+  function event(date: string, title: string): CalendarEvent {
+    return { key: title, date, title, detail: '', time: '', location: '', link: '' }
+  }
+
+  const today = new Date(2026, 8, 10)
+
+  it('takes the soonest events from today forward', () => {
+    const selected = selectUpcomingEvents(
+      [
+        event('2026-09-20', 'Later'),
+        event('2026-09-01', 'Passed'),
+        event('2026-09-10', 'Today'),
+      ],
+      2,
+      today,
+    )
+
+    expect(selected.map((item) => item.title)).toEqual(['Today', 'Later'])
+  })
+
+  it('shows the most recent events when every event is in the past', () => {
+    const selected = selectUpcomingEvents(
+      [event('2026-01-05', 'Oldest'), event('2026-08-05', 'Newest')],
+      1,
+      today,
+    )
+
+    expect(selected.map((item) => item.title)).toEqual(['Newest'])
+  })
+
+  it('keeps rows whose date is not an ISO day so nothing silently disappears', () => {
+    const selected = selectUpcomingEvents([event('Autumn 2026', 'Undated')], 5, today)
+
+    expect(selected.map((item) => item.title)).toEqual(['Undated'])
+  })
+})
+
+describe('calendar month stepping range', () => {
+  const today = new Date(2026, 8, 21)
+
+  it('clamps months before this year and after next year', () => {
+    expect(clampMonthToSteppingRange({ year: 2025, monthIndex: 11 }, today)).toEqual({
+      year: 2026,
+      monthIndex: 0,
+    })
+    expect(clampMonthToSteppingRange({ year: 2028, monthIndex: 0 }, today)).toEqual({
+      year: 2027,
+      monthIndex: 11,
+    })
+  })
+
+  it('blocks stepping out of this year and next', () => {
+    expect(canStepMonth({ year: 2026, monthIndex: 0 }, -1, today)).toBe(false)
+    expect(canStepMonth({ year: 2027, monthIndex: 11 }, 1, today)).toBe(false)
+    expect(canStepMonth({ year: 2026, monthIndex: 0 }, 1, today)).toBe(true)
+  })
+})
+
 describe('demo page composition', () => {
-  it('renders default demo modules including calendar events', () => {
+  it('renders one sheet-backed example of each updatable type', () => {
     render(
       <MemoryRouter initialEntries={['/demo']}>
         <AppShell />
@@ -184,23 +334,37 @@ describe('demo page composition', () => {
     expect(
       screen.getByRole('heading', { level: 1, name: defaultText.demo.hero.title }),
     ).toBeTruthy()
-    expect(screen.getByText(defaultText.demo.intro.body)).toBeTruthy()
     expect(
-      screen.getByRole('img', {
-        name: 'Template mark used as example module media',
-      }),
-    ).toBeTruthy()
-    expect(screen.getByText(defaultText.demo.cards.oneTitle)).toBeTruthy()
-    expect(
-      screen.getAllByText(defaultText.demo.calendar.oneTitle).length,
-    ).toBeGreaterThan(0)
-    expect(
-      screen.getByRole('heading', { name: defaultText.demo.calendar.title }),
+      screen.getByRole('heading', { name: defaultText.demo.live.title }),
     ).toBeTruthy()
     expect(
-      screen.getByRole('heading', {
-        name: defaultText.demo.calendar.monthTitle,
-      }),
+      screen.getByRole('heading', { name: defaultText.demo.live.textTitle }),
+    ).toBeTruthy()
+    expect(
+      screen.getByRole('heading', { name: defaultText.demo.live.cardsTitle }),
+    ).toBeTruthy()
+    expect(
+      screen.getByRole('heading', { name: defaultText.demo.live.eventsTitle }),
+    ).toBeTruthy()
+    expect(
+      screen.getByRole('heading', { name: defaultText.demo.live.upcomingTitle }),
+    ).toBeTruthy()
+    expect(screen.getByRole('table')).toBeTruthy()
+  })
+
+  it('renders the contact info module on the contact page', () => {
+    render(
+      <MemoryRouter initialEntries={['/about/contact']}>
+        <AppShell />
+      </MemoryRouter>,
+    )
+
+    expect(
+      screen.getByRole('heading', { name: defaultText.contact.info.title }),
+    ).toBeTruthy()
+    expect(screen.getByText(defaultText.contact.info.labelOne)).toBeTruthy()
+    expect(
+      screen.getByRole('link', { name: defaultText.contact.info.valueOne }),
     ).toBeTruthy()
   })
 })

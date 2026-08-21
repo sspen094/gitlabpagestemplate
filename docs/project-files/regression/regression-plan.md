@@ -18,7 +18,7 @@ npm run build
 | Layer | Purpose | Typical contents |
 |-------|---------|------------------|
 | **1** | Unit / component | `npm test` — pages, modules, `t()` lookup |
-| **2** | Integration | Google Sheets published-data mapping (when added) |
+| **2** | Integration | Google Sheets mapping — unit fixtures in Layer 1 (no live network) |
 | **3** | UI smoke | Playwright in `tests/end_to_end/smoke/` |
 | **4** | Static build | `npm run build` for GitHub Pages |
 
@@ -36,6 +36,8 @@ npm run build
 | R-02-build | Static build | `npm run build` | 02-modular-page-system | Confirms page modules bundle into `dist/` |
 | R-03-test | Unit | `npm test` | 03-navigation | Navbar, keyboard, mobile drawer, layout quality gate |
 | R-03-build | Static build | `npm run build` | 03-navigation | Confirms navbar CSS/JS bundle into `dist/` |
+| R-04-test | Unit | `npm test` | 04-google-sheets-updatable-content | Feed client, schemas, hydrate, updatable modules |
+| R-04-build | Static build | `npm run build` | 04-google-sheets-updatable-content | Confirms hydration client bundles into `dist/` |
 
 _Add one row per slice closeout script. Do not add new tests under `tests/validation/`._
 
@@ -54,6 +56,10 @@ _Add one row per slice closeout script. Do not add new tests under `tests/valida
 | U-02-modules | Baseline modules, a11y, calendar layouts | `tests/unit/baseline-modules.test.tsx` | 02-modular-page-system |
 | U-03-nav | Navbar structure, config add, active state, keyboard, drawer | `tests/unit/navbar.test.tsx` | 03-navigation |
 | U-03-mobile | Viewport, wrap CSS, calendar scroll wrapper | `tests/unit/mobile-quality-gate.test.tsx` | 03-navigation |
+| U-04-feed | CSV/JSON parse, export URL + gid, never-throw fetch | `tests/unit/sheets-feed-client.test.ts` | 04-google-sheets-updatable-content |
+| U-04-schema | Allow-list, sanitize, per-type parsers | `tests/unit/sheets-schemas.test.ts` | 04-google-sheets-updatable-content |
+| U-04-hydrate | Fallback, limit, env URL + gid map | `tests/unit/sheets-hydrate.test.ts` | 04-google-sheets-updatable-content |
+| U-04-modules | Shell-first hydrate, text/cards/events/contact | `tests/unit/updatable-modules.test.tsx` | 04-google-sheets-updatable-content |
 
 ---
 

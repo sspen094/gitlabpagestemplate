@@ -13,6 +13,7 @@ export type DataSourceRef = {
   kind: 'sheets'
   publishedUrl?: string
   tab?: string
+  gid?: string
 }
 
 export type ModuleConfig = Record<string, unknown>

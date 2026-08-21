@@ -8,5 +8,7 @@ Ownership areas of the product. Slices deliver features inside a module.
 | text | Developer-authored copy via `t()` | [t-lookup](../../modules/text/features/t-lookup/README.md) |
 | pages | Config-driven composition + baseline modules | [modular-pages](../../modules/pages/features/modular-pages/README.md) |
 | navigation | Site chrome (navbar, dropdowns, mobile drawer) | [navbar](../../modules/navigation/features/navbar/README.md) |
+| updatable-content | Sheet-backed module hydration | [sheets-hydration](../../modules/updatable-content/features/sheets-hydration/README.md) |
+| data-sources | Published CSV/JSON feed client | [feed-client](../../modules/data-sources/README.md) |
 
-Later slices add Sheets-backed content.
+Later slices add external form submissions.

@@ -19,8 +19,8 @@ Master checklist for the layered test tree. Update when a folder moves from **Pl
 |------|--------|-------|
 | `tests/README.md` | Populated | Layout and run commands |
 | `tests/SCAFFOLD.md` | Populated | This file |
-| `tests/unit/` | Populated | `vite-base`, `app-shell`, `static-build`, `t-lookup`, `page-composer`, `module-definition`, `baseline-modules`, `navbar`, `mobile-quality-gate` (`npm test`) |
-| `tests/end_to_end/smoke/` | Planned | Playwright UI smoke — not installed; Slice 03 used Cursor browser smoke on `#/demo`, `#/about`, `#/about/contact` |
+| `tests/unit/` | Populated | `vite-base`, `app-shell`, `static-build`, `t-lookup`, `page-composer`, `module-definition`, `baseline-modules`, `navbar`, `mobile-quality-gate`, `sheets-feed-client`, `sheets-schemas`, `sheets-hydrate`, `updatable-modules` (`npm test`) |
+| `tests/end_to_end/smoke/` | Planned | Playwright UI smoke — not installed; Slice 04 used live `#/demo` + `#/about/contact` during Manual confirmation |
 | `tests/validation/` | Shim | **Do not add new tests here** |
 
 ## Layers
@@ -28,7 +28,7 @@ Master checklist for the layered test tree. Update when a folder moves from **Pl
 | Path | Purpose |
 |------|---------|
 | `unit/` | Fast tests — no live network (static-build test runs Vite locally) |
-| `integration/` | Google Sheets published-data mapping (when added) |
+| `integration/` | Google Sheets published-data mapping — covered in Layer 1 unit tests with fixtures (no live network) |
 | `end_to_end/workflows/` | Multi-page flows |
 | `end_to_end/smoke/` | UI smoke / Playwright |
 

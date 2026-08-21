@@ -16,7 +16,7 @@ Short onboarding for humans running this repo in Cursor. **Agents read `AGENTS.m
 | **Git branch** | `main` until the first feature slice. **Before slice 01:** create a branch per slice (e.g. `01-navigation-v1`). Put `BRANCH=` in `.cursor/active-slice`. |
 | **Vision** | Keep refining [`requirements/requirements.md`](requirements/requirements.md); later move architecture + UI spec to `docs/requirements/vision/`. |
 | **Slice 01+** | Draft with PM agent (`docs/product-manager-agent/`), then save under `docs/requirements/slices/` (§3). Include **SC-xx** and **regression intent**. |
-| **Env** | Optional `.env.example` → `.env.local` for Vite base path and published sheet URLs. See §7. |
+| **Env** | Optional `.env.example` → `.env.local` for Vite base path, the public Google Spreadsheet URL, and worksheet gids. See §7. |
 | **Local Cursor** | `cp .cursor/active-slice.example .cursor/active-slice`, set `SLICE_ID`, `MODULE_ID`, `FEATURE_NAME`. `.cursor/hooks.json` is already present for the stop hook. |
 
 **Branching rule:** requirements and project plan on `main` (or a short-lived `plan/NN-name` branch); implementation on the branch named in `active-slice`. Merge plan before agents build.
@@ -112,8 +112,8 @@ Stop when the tasks file matches requirements.
 
 | File | Who edits | What to fill |
 |------|-----------|--------------|
-| **`.env.local`** | You (gitignored) | Non-secret local config (Vite base path, published Google Sheets URLs). Start from `.env.example` when it exists. |
-| **GitHub Pages** | You | Repo Pages settings + `BASE_URL` / homepage path for the fork. |
+| **`.env.local`** | You (gitignored) | Non-secret local config: Vite base path, `VITE_GOOGLE_SHEETS_URL`, and `VITE_GOOGLE_SHEETS_GIDS`. Start from `.env.example`. |
+| **GitHub Pages** | You | Repo Pages settings; optional Actions variables `BASE_URL`, `VITE_GOOGLE_SHEETS_URL`, and `VITE_GOOGLE_SHEETS_GIDS`. |
 
 **Load locally:**
 
@@ -129,6 +129,8 @@ Production is a static `npm run build` deployed to GitHub Pages. There is no SQL
 **Pages:** edit `src/modules/pages/modular-pages/pages-config.ts` to add pages or module instances. Preview `#/` and `#/demo`.
 
 **Nav:** edit `src/modules/navigation/navbar/nav-config.ts` for top-level links and dropdowns. Labels are `nav.items.*` / `nav.chrome.*` in `text-config.ts`. Narrow viewports use a hamburger drawer.
+
+**Google Sheets:** use one public, read-only spreadsheet. Name each worksheet tab for its target updatable module (`demo-text`, `demo-cards`, `demo-calendar`, `contact-info` in the demo). All rows on that tab use the module's schema. Set `VITE_GOOGLE_SHEETS_URL` and `VITE_GOOGLE_SHEETS_GIDS` locally and as GitHub Actions variables for production builds; see [`configuration/google-sheets.md`](configuration/google-sheets.md).
 
 ---
 

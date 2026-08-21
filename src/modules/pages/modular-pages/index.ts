@@ -26,4 +26,12 @@ export { ImageBlockModule } from './ImageBlockModule.tsx'
 export { CardListModule } from './CardListModule.tsx'
 export { SectionModule } from './SectionModule.tsx'
 export { CalendarModule } from './CalendarModule.tsx'
+export {
+  canStepMonth,
+  clampMonthToSteppingRange,
+  selectUpcomingEvents,
+  shiftMonth,
+} from './calendar-events.ts'
+export type { CalendarEvent, CalendarMonth } from './calendar-events.ts'
+export { ContactInfoModule } from './ContactInfoModule.tsx'
 export { FallbackModule } from './FallbackModule.tsx'

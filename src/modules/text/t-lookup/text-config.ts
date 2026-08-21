@@ -34,30 +34,18 @@ export const defaultText: TextTree = {
       subtitle: 'Baseline modules rendered from page configuration.',
       cta: 'Back home',
     },
-    intro: {
-      title: 'Demo page',
-      body: 'This page is registered from configuration only — no custom page component.',
-    },
-    image: {
-      caption: 'Image block with required alt text',
-    },
-    section: {
-      title: 'Grouped modules',
-    },
-    cards: {
-      title: 'Card examples',
-      oneTitle: 'First card',
-      oneBody: 'Config-driven card copy.',
-      twoTitle: 'Second card',
-      twoBody: 'Cards sit in a responsive grid.',
-    },
-    calendar: {
-      title: 'Upcoming events',
-      monthTitle: 'Event calendar',
-      oneTitle: 'Kickoff',
-      oneDetail: 'Example static event.',
-      twoTitle: 'Review',
-      twoDetail: 'Calendar entries come from config in this slice.',
+    live: {
+      title: 'Updatable from Google Sheets',
+      textTitle: 'Announcements',
+      textBody:
+        'Placeholder copy shown until a published Google Sheet is connected. Each row of the worksheet becomes its own paragraph.',
+      cardsTitle: 'Featured items',
+      cardOneTitle: 'Sample card',
+      cardOneBody: 'Connect a sheet to replace these cards.',
+      eventsTitle: 'Upcoming events',
+      upcomingTitle: 'Next five events',
+      eventOneTitle: 'Sample event',
+      eventOneDetail: 'Connect a sheet to replace these events.',
     },
   },
   nav: {
@@ -86,6 +74,11 @@ export const defaultText: TextTree = {
       title: 'Contact',
       body: 'Example About subsection.',
     },
+    info: {
+      title: 'Get in touch',
+      labelOne: 'Email',
+      valueOne: 'hello@example.test',
+    },
   },
   members: {
     hero: {
@@ -99,10 +92,22 @@ export const defaultText: TextTree = {
     },
   },
   modules: {
+    calendar: {
+      upcoming: 'Next events',
+      previousMonth: 'Previous month',
+      nextMonth: 'Next month',
+    },
     fallback: {
       unknownType: 'This module type is not registered.',
       invalid: 'This module could not be displayed.',
       unhydrated: 'This content is not available yet.',
+    },
+  },
+  updatable: {
+    fallback: {
+      unavailable: 'This content is being updated and will appear shortly.',
+      empty: 'No entries to show yet.',
+      malformed: 'This content is temporarily unavailable.',
     },
   },
 }
