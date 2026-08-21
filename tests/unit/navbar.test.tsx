@@ -46,10 +46,10 @@ describe('navbar', () => {
       ),
     ).toBe('/')
     expect(
-      screen.getByRole('link', { name: defaultText.nav.items.demo }).getAttribute(
+      screen.getByRole('link', { name: defaultText.nav.items.events }).getAttribute(
         'href',
       ),
-    ).toBe('/demo')
+    ).toBe('/events')
     const about = screen.getByRole('link', { name: defaultText.nav.items.about })
     expect(about.getAttribute('href')).toBe('/about')
     expect(about.getAttribute('aria-haspopup')).toBe('true')
@@ -87,11 +87,11 @@ describe('navbar', () => {
   })
 
   it('marks the current route as the active page', () => {
-    renderNav('/demo')
+    renderNav('/events')
 
-    const demo = screen.getByRole('link', { name: defaultText.nav.items.demo })
-    expect(demo.getAttribute('aria-current')).toBe('page')
-    expect(demo.className).toContain('is-active')
+    const events = screen.getByRole('link', { name: defaultText.nav.items.events })
+    expect(events.getAttribute('aria-current')).toBe('page')
+    expect(events.className).toContain('is-active')
 
     const home = screen.getByRole('link', { name: defaultText.nav.items.home })
     expect(home.getAttribute('aria-current')).toBeNull()
@@ -115,8 +115,8 @@ describe('navbar', () => {
 
 describe('nav active matching', () => {
   it('matches normalized paths and section children', () => {
-    expect(isHrefActive('/demo/', '/demo')).toBe(true)
-    expect(isHrefActive('/about', '/demo')).toBe(false)
+    expect(isHrefActive('/events/', '/events')).toBe(true)
+    expect(isHrefActive('/about', '/events')).toBe(false)
 
     const about = defaultNav.find((item) => item.id === 'about')
     if (!about || about.kind !== 'section') {
@@ -132,12 +132,12 @@ describe('navbar keyboard', () => {
     renderNav('/')
 
     const home = screen.getByRole('link', { name: defaultText.nav.items.home })
-    const demo = screen.getByRole('link', { name: defaultText.nav.items.demo })
+    const events = screen.getByRole('link', { name: defaultText.nav.items.events })
     home.focus()
     fireEvent.keyDown(home, { key: 'ArrowRight' })
-    expect(document.activeElement).toBe(demo)
+    expect(document.activeElement).toBe(events)
 
-    fireEvent.keyDown(demo, { key: 'ArrowLeft' })
+    fireEvent.keyDown(events, { key: 'ArrowLeft' })
     expect(document.activeElement).toBe(home)
   })
 

@@ -1,8 +1,6 @@
 # Ex-React — implementation catalog
 
-Living index of **what the product has built**. `agent-product-manager` reads this **first** every session to avoid re-specifying shipped behavior.
-
-**Maintainers:** Cursor updates after implementation lands; humans review on slice closeout.
+Living index of **what the product has built**.
 
 ---
 
@@ -10,8 +8,8 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 | Field | Value |
 |-------|-------|
-| **Next slice id** | `06` |
-| **Last updated** | 2026-08-21 (Slice 05 shipped) |
+| **Next slice id** | none (template complete) |
+| **Last updated** | 2026-08-21 (Slice 06 shipped) |
 
 ---
 
@@ -25,6 +23,7 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 | 03-navigation | Shipped 2026-08-21 | navigation | navbar | Config-driven navbar, keyboard dropdowns, mobile hamburger drawer, layout quality gate (D01) |
 | 04-google-sheets-updatable-content | Shipped 2026-08-21 | updatable-content, data-sources | sheets-hydration | Published Sheets hydration (export+gid), text/cards/events/contact, shell-first fallback |
 | 05-external-submissions | Shipped 2026-08-21 | submissions | external-forms | Contact form via HTTPS email service or `mailto:` fallback (D01); no site-side storage |
+| 06-demo-site-and-docs | Shipped 2026-08-21 | demo-site, theme, pages | demo-and-guides, site-theme | Realistic placeholder site, theme tokens, page/module style options, editor + developer guides |
 
 ---
 
@@ -38,6 +37,7 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 | Text lookup | Shipped | `t()` with `[page].[section].[item]` keys; edit `text-config.ts` |
 | Updatable content | Shipped | Google Sheets published CSV by `gid`; shell-first hydrate; sanitized fallback |
 | External submissions | Shipped | HTTPS email-service POST, redirect handoff, or `mailto:` fallback; no site-side storage |
+| Theme / UI | Shipped | Central tokens + closed page/module style vocabulary |
 | HTTP API | N/A | No custom backend |
 | App database | N/A | No owned database |
 
@@ -61,7 +61,7 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 | Feature id | Routes / entry | Database | Status |
 |------------|----------------|----------|--------|
-| modular-pages | `#/` and `#/demo` (`pages-config.ts`); `#/about/contact` contact + contact-form | none | Shipped — [as-built](../modules/pages/features/modular-pages/README.md) |
+| modular-pages | `#/`, `#/events`, `#/about`, `#/about/contact`, `#/about/members` | none | Shipped — [as-built](../modules/pages/features/modular-pages/README.md) |
 
 ### navigation
 
@@ -73,13 +73,25 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 | Feature id | Routes / entry | Database | Status |
 |------------|----------------|----------|--------|
-| sheets-hydration | `#/demo` (text/cards/calendar); `#/about/contact` | none (read-only published Sheets) | Shipped — [as-built](../modules/updatable-content/features/sheets-hydration/README.md) |
+| sheets-hydration | `#/` text/cards; `#/events` calendar; `#/about/members` cards; `#/about/contact` | none (read-only published Sheets) | Shipped — [as-built](../modules/updatable-content/features/sheets-hydration/README.md) |
 
 ### submissions
 
 | Feature id | Routes / entry | Database | Status |
 |------------|----------------|----------|--------|
 | external-forms | `#/about/contact` (`contact-form` module) | none | Shipped — [as-built](../modules/submissions/features/external-forms/README.md) |
+
+### theme
+
+| Feature id | Routes / entry | Database | Status |
+|------------|----------------|----------|--------|
+| site-theme | `ThemeProvider` in `src/main.tsx`; `config.ts` | none | Shipped — [as-built](../modules/theme/features/site-theme/README.md) |
+
+### demo-site
+
+| Feature id | Routes / entry | Database | Status |
+|------------|----------------|----------|--------|
+| demo-and-guides | Sample pages + `docs/guides/` | none | Shipped — [as-built](../modules/demo-site/features/demo-and-guides/README.md) |
 
 ### foundations
 
@@ -108,11 +120,9 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 ---
 
-## How to update (Cursor, on slice closeout)
+## How to update (on slice closeout)
 
 1. Add slice row with **Shipped** date when final phase completes.
-2. Increment **Next slice id**.
+2. Increment **Next slice id** (or set `none` when delivery is complete).
 3. Add feature rows with routes and links to `docs/modules/…` as-built.
 4. Note new DP-xx or regression scripts in regression-plan.
-
-`agent-product-manager`: **read only** unless human directs catalog edits.

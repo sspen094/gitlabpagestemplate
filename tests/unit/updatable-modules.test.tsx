@@ -40,20 +40,26 @@ function updatable(
 }
 
 const textShell = {
-  titleKey: 'demo.live.textTitle',
-  blocks: [{ id: 'shell', textKey: 'demo.live.textBody' }],
+  titleKey: 'home.updates.title',
+  blocks: [{ id: 'shell', textKey: 'home.updates.body' }],
 }
 
 const cardShell = {
   layout: 'grid',
-  titleKey: 'demo.live.cardsTitle',
-  entries: [{ id: 'shell', titleKey: 'demo.live.cardOneTitle' }],
+  titleKey: 'members.directory.title',
+  entries: [{ id: 'shell', titleKey: 'members.directory.cardOneTitle' }],
 }
 
 const eventShell = {
   layout: 'list',
-  titleKey: 'demo.live.eventsTitle',
-  events: [{ id: 'shell', date: '2026-10-01', titleKey: 'demo.live.eventOneTitle' }],
+  titleKey: 'events.calendar.title',
+  events: [
+    {
+      id: 'shell',
+      date: '2026-10-01',
+      titleKey: 'events.calendar.eventOneTitle',
+    },
+  ],
 }
 
 const contactShell = {
@@ -87,7 +93,7 @@ describe('updatable module hydration', () => {
     render(<PageComposer modules={[updatable('text', textShell)]} />)
 
     expect(
-      screen.getByRole('heading', { name: defaultText.demo.live.textTitle }),
+      screen.getByRole('heading', { name: defaultText.home.updates.title }),
     ).toBeTruthy()
   })
 
@@ -96,7 +102,9 @@ describe('updatable module hydration', () => {
     render(<PageComposer modules={[updatable('text', textShell)]} />)
 
     expect(
-      await screen.findByRole('heading', { name: defaultText.demo.live.textTitle }),
+      await screen.findByRole('heading', {
+        name: defaultText.home.updates.title,
+      }),
     ).toBeTruthy()
     expect(screen.getByText('Live body')).toBeTruthy()
   })
@@ -195,7 +203,7 @@ describe('updatable module hydration', () => {
     )
 
     expect(
-      screen.getByRole('heading', { name: defaultText.demo.live.textTitle }),
+      screen.getByRole('heading', { name: defaultText.home.updates.title }),
     ).toBeTruthy()
   })
 })

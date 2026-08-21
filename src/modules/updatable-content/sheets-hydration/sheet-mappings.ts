@@ -8,7 +8,7 @@ import type { SheetMapping } from './mapping.ts'
 export const sheetMappings: readonly SheetMapping[] = [
   {
     id: 'demo-text',
-    page: 'demo',
+    page: 'home',
     moduleId: 'demo-text',
     type: 'text-block',
     publishedUrl: '',
@@ -18,7 +18,7 @@ export const sheetMappings: readonly SheetMapping[] = [
   },
   {
     id: 'demo-cards',
-    page: 'demo',
+    page: 'members',
     moduleId: 'demo-cards',
     type: 'card-list',
     publishedUrl: '',
@@ -28,7 +28,7 @@ export const sheetMappings: readonly SheetMapping[] = [
   },
   {
     id: 'demo-calendar',
-    page: 'demo',
+    page: 'events',
     moduleId: 'demo-calendar',
     type: 'event-list',
     publishedUrl: '',

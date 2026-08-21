@@ -19,8 +19,8 @@ Master checklist for the layered test tree. Update when a folder moves from **Pl
 |------|--------|-------|
 | `tests/README.md` | Populated | Layout and run commands |
 | `tests/SCAFFOLD.md` | Populated | This file |
-| `tests/unit/` | Populated | `vite-base`, `app-shell`, `static-build`, `t-lookup`, `page-composer`, `module-definition`, `baseline-modules`, `navbar`, `mobile-quality-gate`, `sheets-feed-client`, `sheets-schemas`, `sheets-hydrate`, `updatable-modules`, `submit-adapters`, `contact-form` (`npm test`) |
-| `tests/end_to_end/smoke/` | Planned | Playwright UI smoke — not installed; Slice 05 used `#/about/contact` + Vitest form states |
+| `tests/unit/` | Populated | `vite-base`, `app-shell`, `static-build`, `t-lookup`, `page-composer`, `module-definition`, `baseline-modules`, `navbar`, `mobile-quality-gate`, `sheets-feed-client`, `sheets-schemas`, `sheets-hydrate`, `updatable-modules`, `submit-adapters`, `contact-form`, `demo-site`, `site-theme`, `module-style` (`npm test`) |
+| `tests/end_to_end/smoke/` | Planned | Playwright UI smoke — not installed; Slice 06 uses Vitest for demo routes, theme, and style |
 | `tests/validation/` | Shim | **Do not add new tests here** |
 
 ## Layers
@@ -44,4 +44,4 @@ Feature colocated tests may live next to modules under `src/`.
 
 A slice is **not** closed when tests exist but have not been run.
 
-See [`docs/product-manager-agent/regression-and-closeout.md`](../docs/product-manager-agent/regression-and-closeout.md).
+See [`docs/project-files/regression/regression-plan.md`](../docs/project-files/regression/regression-plan.md).

@@ -93,16 +93,18 @@ describe('page registration', () => {
     ).toBeTruthy()
   })
 
-  it('renders the demo page registered in defaultPages', () => {
+  it('renders a realistic page registered in defaultPages', () => {
     render(
-      <MemoryRouter initialEntries={['/demo']}>
+      <MemoryRouter initialEntries={['/events']}>
         <AppShell />
       </MemoryRouter>,
     )
 
     expect(
-      screen.getByRole('heading', { name: defaultText.demo.live.title }),
+      screen.getByRole('heading', { name: defaultText.events.hero.title }),
     ).toBeTruthy()
-    expect(screen.getByText(defaultText.demo.live.textBody)).toBeTruthy()
+    expect(
+      screen.getByRole('heading', { name: defaultText.events.calendar.title }),
+    ).toBeTruthy()
   })
 })

@@ -17,6 +17,8 @@ Vite inlines `VITE_*` during `npm run build`, so these values must reach the wor
 
 Local run: `Copy-Item .env.example .env.local` then `npm run dev`. See the root [`README.md`](../../README.md).
 
+Task walkthroughs that use these keys: [`guides/google-sheets-source.md`](../guides/google-sheets-source.md) (Sheets URL + gids) and [`guides/fork-and-rename.md`](../guides/fork-and-rename.md) (`BASE_URL`, submit endpoints). Appearance is **not** env-driven — see [`guides/rebrand-and-style.md`](../guides/rebrand-and-style.md).
+
 **Slice 02:** page composition is code config (`pages-config.ts`), not env.
 
 **Slice 03:** nav is code config (`nav-config.ts`) plus `t()` labels. No new env keys.

@@ -12,10 +12,10 @@ export const defaultNav: readonly NavItem[] = [
     href: '/',
   },
   {
-    id: 'demo',
+    id: 'events',
     kind: 'link',
-    labelKey: 'nav.items.demo',
-    href: '/demo',
+    labelKey: 'nav.items.events',
+    href: '/events',
   },
   {
     id: 'about',

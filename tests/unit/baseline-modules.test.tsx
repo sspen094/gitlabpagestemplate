@@ -323,31 +323,50 @@ describe('calendar month stepping range', () => {
   })
 })
 
-describe('demo page composition', () => {
-  it('renders one sheet-backed example of each updatable type', () => {
+describe('sample site composition', () => {
+  it('places every baseline and sheet-backed module on realistic pages', () => {
     render(
-      <MemoryRouter initialEntries={['/demo']}>
+      <MemoryRouter initialEntries={['/']}>
         <AppShell />
       </MemoryRouter>,
     )
 
     expect(
-      screen.getByRole('heading', { level: 1, name: defaultText.demo.hero.title }),
+      screen.getByRole('heading', { level: 1, name: defaultText.home.hero.title }),
     ).toBeTruthy()
     expect(
-      screen.getByRole('heading', { name: defaultText.demo.live.title }),
+      screen.getByRole('heading', { name: defaultText.home.introduction.title }),
     ).toBeTruthy()
     expect(
-      screen.getByRole('heading', { name: defaultText.demo.live.textTitle }),
+      screen.getByRole('heading', { name: defaultText.home.updates.title }),
+    ).toBeTruthy()
+    expect(screen.getByRole('img')).toBeTruthy()
+
+    cleanup()
+    render(
+      <MemoryRouter initialEntries={['/about/members']}>
+        <AppShell />
+      </MemoryRouter>,
+    )
+
+    expect(
+      screen.getByRole('heading', { name: defaultText.members.directory.title }),
+    ).toBeTruthy()
+
+    cleanup()
+    render(
+      <MemoryRouter initialEntries={['/events']}>
+        <AppShell />
+      </MemoryRouter>,
+    )
+
+    expect(
+      screen.getByRole('heading', { name: defaultText.events.calendar.title }),
     ).toBeTruthy()
     expect(
-      screen.getByRole('heading', { name: defaultText.demo.live.cardsTitle }),
-    ).toBeTruthy()
-    expect(
-      screen.getByRole('heading', { name: defaultText.demo.live.eventsTitle }),
-    ).toBeTruthy()
-    expect(
-      screen.getByRole('heading', { name: defaultText.demo.live.upcomingTitle }),
+      screen.getByRole('heading', {
+        name: defaultText.events.calendar.upcomingTitle,
+      }),
     ).toBeTruthy()
     expect(screen.getByRole('table')).toBeTruthy()
   })

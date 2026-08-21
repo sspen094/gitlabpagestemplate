@@ -14,6 +14,7 @@ import {
 } from './calendar-events.ts'
 import { readCopy, readString } from './copy.ts'
 import { ModuleHeading, NestedHeadingScope } from './heading-level.tsx'
+import { MODULE_LAYOUTS, readLayoutOption } from './style.ts'
 import type { ModuleComponentProps, ModuleInstance } from './types.ts'
 
 export type CalendarLayout = 'list' | 'month' | 'hybrid'
@@ -25,7 +26,7 @@ const ISO_MONTH = /^(\d{4})-(\d{2})$/
 export function CalendarModule({ instance }: ModuleComponentProps) {
   const title = readCopy(instance.config.titleKey, instance.config.title)
   const events = readCalendarEvents(instance)
-  const layout = readCalendarLayout(instance.config.layout)
+  const layout = readCalendarLayout(instance)
   const headingId = title ? `${instance.id}-title` : `${instance.id}-calendar`
 
   return (
@@ -207,8 +208,13 @@ function MonthGrid({
   )
 }
 
-function readCalendarLayout(value: unknown): CalendarLayout {
-  const layout = readString(value)
+function readCalendarLayout(instance: ModuleInstance): CalendarLayout {
+  const layout = readLayoutOption(
+    instance.style?.layout,
+    instance.config.layout,
+    MODULE_LAYOUTS.calendar ?? [],
+    'list',
+  )
   if (HYBRID_LAYOUTS.has(layout)) {
     return 'hybrid'
   }

@@ -2,14 +2,16 @@
 
 **Chain:** Requirements AC → SC-xx → verify method → PASS | FAIL | N/A → evidence
 
-**Last updated:** 2026-08-20 _(task sync)_
+**Last updated:** 2026-08-21 _(Final closeout)_
 
 | AC | Requirement (short) | SC-xx | Phase | Verify (planned) | Result | Evidence |
 |----|---------------------|-------|-------|------------------|--------|----------|
-| 1 | Demo shows modules + update patterns (placeholder) | SC-01 | 1 | UI smoke + component tests | planned | — |
-| 2 | Developer guides for the four tasks | SC-02 | 2 | Docs review + link check | planned | — |
-| 3 | Editor guide enables no-code updates | SC-03 | 2 | Editor-guide walkthrough vs sample sheet | planned | — |
-| 4 | Fork/rename documented; placeholder-only | SC-04 | 2 | Docs review + content audit | planned | — |
+| 1 | Demo shows modules + update patterns (placeholder) | SC-01 | 1 | UI smoke + component tests | PASS | `demo-site.test.ts`; `npm test` 159 |
+| 2 | Developer guides for the four tasks + rebrand/style | SC-02 | 4 | Docs review + link check | PASS | `docs/guides/` |
+| 3 | Editor guide enables no-code updates | SC-03 | 4 | Editor-guide walkthrough vs sample sheet | PASS | `editor-google-sheets.md` |
+| 4 | Fork/rename documented; placeholder-only | SC-04 | 4 | Docs review + content audit | PASS | `fork-and-rename.md` + demo pin |
+| 5 | Central theme config drives a polished, accessible design | SC-05 | 2 | Unit tests + stylesheet assertions + human review | PASS | `site-theme.test.tsx`; quality gate; visual review |
+| 6 | Validated page- and module-level style options | SC-06 | 3 | Page appearance + module style + invalid fallback | PASS | `module-style.test.tsx` |
 
 ## Result values
 

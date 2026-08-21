@@ -11,5 +11,6 @@ Cross-cutting as-built design for Ex-React. Per-feature docs live under [`docs/m
 | [design/navigation.md](design/navigation.md) | Data-driven navbar + mobile drawer |
 | [design/updatable-content.md](design/updatable-content.md) | Google Sheets published-feed hydration |
 | [design/submissions.md](design/submissions.md) | External form adapters (no site storage) |
+| [design/ui-controls.md](design/ui-controls.md) | Theme tokens + page/module style vocabulary |
 
 Product requirements remain the architecture authority until `docs/requirements/vision/` is seeded.

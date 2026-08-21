@@ -1,11 +1,17 @@
 import { ModuleFrame } from './ModuleFrame.tsx'
 import { readCopy, readString } from './copy.ts'
 import { ModuleHeading, NestedHeadingScope } from './heading-level.tsx'
+import { MODULE_LAYOUTS, readLayoutOption } from './style.ts'
 import type { ModuleComponentProps } from './types.ts'
 
 export function CardListModule({ instance }: ModuleComponentProps) {
   const title = readCopy(instance.config.titleKey, instance.config.title)
-  const layout = readString(instance.config.layout) === 'list' ? 'list' : 'grid'
+  const layout = readLayoutOption(
+    instance.style?.layout,
+    instance.config.layout,
+    MODULE_LAYOUTS['card-list'] ?? [],
+    'grid',
+  )
   const entries = Array.isArray(instance.config.entries)
     ? instance.config.entries
     : []

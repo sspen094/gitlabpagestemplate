@@ -2,6 +2,8 @@
 
 How this template binds updatable modules to one public spreadsheet. Editor-facing column formats also live in the root [`README.md`](../../README.md#google-sheets-updatable-content).
 
+**Guides:** [set up a source](../guides/google-sheets-source.md) · [make a section updatable](../guides/updatable-section.md) · [editor walkthrough](../guides/editor-google-sheets.md). This page is the condensed reference.
+
 ## Mapping model
 
 ```text
@@ -30,6 +32,19 @@ A Google worksheet is addressed only by `gid`. Without a gid for that tab, the m
 4. Pages: same names as a repository Actions variable or a `github-pages` environment variable. Vite embeds them at **build** time, so they must be visible to the workflow's build job.
 
 Requests go to `/spreadsheets/d/<id>/export?format=csv&gid=<gid>`, not `gviz`. Non-Google published CSV/JSON URLs still work if supplied as an inline `dataSource`.
+
+## Public sample sheet
+
+The shipped demo uses a [public, read-only placeholder spreadsheet](https://docs.google.com/spreadsheets/d/1wwsme35OY5Kdl8aeC7izcVHzGpLTjpVgJQBgqItYeNA/edit?usp=sharing). Its tab mapping is:
+
+| Tab | GID | Demo section |
+|-----|-----|--------------|
+| `demo-text` | `0` | Home — Community updates |
+| `demo-cards` | `567206608` | About > Members — Sample member directory |
+| `demo-calendar` | `1398361478` | Events — Sample event calendar |
+| `contact-info` | `224199759` | About > Contact — Get in touch |
+
+The same values are committed in `.env.example`. Automated tests use only committed CSV fixtures under `tests/fixtures/google-sheets/`; they never request this live sheet.
 
 ## Adding an updatable module
 

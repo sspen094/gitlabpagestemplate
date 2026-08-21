@@ -3,7 +3,8 @@ import { UpdatableModule } from '../../updatable-content/sheets-hydration/Updata
 import { FallbackModule } from './FallbackModule.tsx'
 import { HeadingLevelProvider } from './heading-level.tsx'
 import { getModuleComponent, getRegisteredTypes } from './registry.ts'
-import type { ModuleInstance } from './types.ts'
+import { pageAppearanceClassNames, resolvePageAppearance } from './style.ts'
+import type { ModuleInstance, PageDefinition } from './types.ts'
 import { prepareModule } from './validate.ts'
 
 /** Shared path: validate → fallback, updatable hydration boundary, or component. */
@@ -28,12 +29,19 @@ export function ModulePipeline({ instance }: { instance: unknown }) {
 
 export function PageComposer({
   modules,
+  appearance,
 }: {
   modules: readonly ModuleInstance[]
+  appearance?: PageDefinition['appearance']
 }) {
+  const resolved = resolvePageAppearance(appearance)
+  const classes = ['page-composer', ...pageAppearanceClassNames(resolved)].join(
+    ' ',
+  )
+
   return (
     <HeadingLevelProvider level={2}>
-      <div className="page-composer">
+      <div className={classes} data-page-width={resolved.width}>
         {modules.map((instance, index) => (
           <ModulePipeline
             key={instance.id || `module-${index}`}

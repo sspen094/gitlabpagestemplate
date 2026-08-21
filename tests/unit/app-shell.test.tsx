@@ -17,8 +17,6 @@ describe('app shell', () => {
     expect(
       screen.getByRole('heading', { name: defaultText.home.hero.title }),
     ).toBeTruthy()
-    expect(
-      screen.getByText(/static React template for GitHub Pages/i),
-    ).toBeTruthy()
+    expect(screen.getByText(defaultText.home.hero.body)).toBeTruthy()
   })
 })

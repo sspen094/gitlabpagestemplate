@@ -1,4 +1,5 @@
 import { hasCopy, readString } from './copy.ts'
+import { resolveModuleStyle, type ModuleStyle } from './style.ts'
 import type {
   DataSourceRef,
   ModuleFallback,
@@ -45,6 +46,44 @@ function readDataSource(value: unknown): DataSourceRef | undefined {
       typeof value.publishedUrl === 'string' ? value.publishedUrl : undefined,
     tab: typeof value.tab === 'string' ? value.tab : undefined,
   }
+}
+
+/**
+ * Style is presentation only, so an unknown option degrades to the default
+ * variant and the module still renders (`style-degraded` is non-blocking).
+ */
+function readStyle(
+  raw: Record<string, unknown>,
+  moduleType: string,
+): { style: ModuleStyle | undefined; issues: ValidationIssue[] } {
+  if (raw.style === undefined) {
+    return { style: undefined, issues: [] }
+  }
+
+  const { style, degraded } = resolveModuleStyle(raw.style, moduleType)
+  if (!isRecord(raw.style)) {
+    return {
+      style,
+      issues: [
+        {
+          code: 'style-degraded',
+          message: 'Module style must be an object; using default styling',
+        },
+      ],
+    }
+  }
+  if (degraded.length > 0) {
+    return {
+      style,
+      issues: [
+        {
+          code: 'style-degraded',
+          message: `Unknown style values fell back to defaults: ${degraded.join(', ')}`,
+        },
+      ],
+    }
+  }
+  return { style, issues: [] }
 }
 
 function readFallback(value: unknown): ModuleFallback | undefined {
@@ -122,6 +161,9 @@ export function validateModuleInstance(
     })
   }
 
+  const style = readStyle(raw, type)
+  issues.push(...style.issues)
+
   const instance: ModuleInstance = {
     id: id || 'invalid',
     type: type || 'fallback',
@@ -129,6 +171,7 @@ export function validateModuleInstance(
     config: config ?? {},
     dataSource: readDataSource(raw.dataSource),
     fallback: readFallback(raw.fallback),
+    style: style.style,
   }
 
   if (type && registeredTypes.has(type) && config) {

@@ -1,118 +1,174 @@
+import type { ModuleStyle } from './style.ts'
 import type { ModuleInstance, PageDefinition } from './types.ts'
 
-/**
- * Registered pages. Add a page by appending an entry (id, path, modules).
- * Routes are derived from this list — no per-page React component.
- *
- * Every content module below is `mode: 'updatable'`: its id matches a worksheet
- * in the configured spreadsheet (`sheet-mappings.ts`), and its static config is
- * only the shell shown before the sheet resolves or when none is configured.
- */
+/** Registered pages for the realistic, placeholder-only sample site. */
 export const defaultPages: PageDefinition[] = [
   {
     id: 'home',
     path: '/',
+    appearance: { rhythm: 'roomy' },
     modules: [
       {
         id: 'home-hero',
         type: 'hero',
         mode: 'static',
+        style: { variant: 'feature', align: 'center' },
         config: {
           titleKey: 'home.hero.title',
           bodyKey: 'home.hero.body',
           ctaLabelKey: 'home.hero.cta',
-          ctaHref: '/demo',
-        },
-      },
-    ],
-  },
-  {
-    id: 'demo',
-    path: '/demo',
-    modules: [
-      {
-        id: 'demo-hero',
-        type: 'hero',
-        mode: 'static',
-        config: {
-          titleKey: 'demo.hero.title',
-          subtitleKey: 'demo.hero.subtitle',
-          ctaLabelKey: 'demo.hero.cta',
-          ctaHref: '/',
+          ctaHref: '/events',
         },
       },
       {
-        id: 'demo-live',
+        id: 'home-introduction',
         type: 'section',
         mode: 'static',
+        style: { spacing: 'roomy' },
         config: {
-          titleKey: 'demo.live.title',
+          titleKey: 'home.introduction.title',
           children: [
-            updatable('demo-text', 'text', {
-              titleKey: 'demo.live.textTitle',
-              blocks: [
-                { id: 'demo-text-shell', textKey: 'demo.live.textBody' },
-              ],
-            }),
-            updatable('demo-cards', 'card-list', {
-              layout: 'grid',
-              titleKey: 'demo.live.cardsTitle',
-              entries: [
-                {
-                  id: 'demo-cards-shell',
-                  titleKey: 'demo.live.cardOneTitle',
-                  bodyKey: 'demo.live.cardOneBody',
-                },
-              ],
-            }),
-            updatable('demo-calendar', 'calendar', {
-              layout: 'hybrid',
-              upcomingCount: 5,
-              titleKey: 'demo.live.eventsTitle',
-              upcomingTitleKey: 'demo.live.upcomingTitle',
-              events: [
-                {
-                  id: 'demo-calendar-shell',
-                  date: '2026-10-01',
-                  titleKey: 'demo.live.eventOneTitle',
-                  detailKey: 'demo.live.eventOneDetail',
-                },
-              ],
-            }),
+            {
+              id: 'home-introduction-copy',
+              type: 'text',
+              mode: 'static',
+              config: {
+                bodyKey: 'home.introduction.body',
+              },
+            },
+            {
+              id: 'home-introduction-image',
+              type: 'image',
+              mode: 'static',
+              config: {
+                src: '/favicon.svg',
+                alt: 'Abstract placeholder mark for the sample community site',
+                captionKey: 'home.introduction.caption',
+              },
+            },
           ],
         },
       },
+      updatable(
+        'demo-text',
+        'text',
+        {
+          titleKey: 'home.updates.title',
+          blocks: [
+            {
+              id: 'demo-text-shell',
+              textKey: 'home.updates.body',
+            },
+          ],
+        },
+        { surface: 'card' },
+      ),
     ],
   },
-  heroPage('about', '/about', 'about.hero.title', 'about.hero.body'),
+  {
+    id: 'events',
+    path: '/events',
+    appearance: { width: 'shell' },
+    modules: [
+      {
+        id: 'events-hero',
+        type: 'hero',
+        mode: 'static',
+        config: {
+          titleKey: 'events.hero.title',
+          bodyKey: 'events.hero.body',
+        },
+      },
+      updatable(
+        'demo-calendar',
+        'calendar',
+        {
+          upcomingCount: 5,
+          titleKey: 'events.calendar.title',
+          upcomingTitleKey: 'events.calendar.upcomingTitle',
+          events: [
+            {
+              id: 'demo-calendar-shell',
+              date: '2026-10-01',
+              titleKey: 'events.calendar.eventOneTitle',
+              detailKey: 'events.calendar.eventOneDetail',
+            },
+          ],
+        },
+        { layout: 'hybrid', width: 'full' },
+      ),
+    ],
+  },
+  {
+    id: 'about',
+    path: '/about',
+    modules: [
+      {
+        id: 'about-hero',
+        type: 'hero',
+        mode: 'static',
+        config: {
+          titleKey: 'about.hero.title',
+          bodyKey: 'about.hero.body',
+        },
+      },
+      {
+        id: 'about-story',
+        type: 'text',
+        mode: 'static',
+        config: {
+          titleKey: 'about.story.title',
+          bodyKey: 'about.story.body',
+        },
+      },
+      {
+        id: 'about-image',
+        type: 'image',
+        mode: 'static',
+        config: {
+          src: '/favicon.svg',
+          alt: 'Placeholder illustration for the sample organization',
+          captionKey: 'about.story.caption',
+        },
+      },
+    ],
+  },
   {
     id: 'contact',
     path: '/about/contact',
+    appearance: { tone: 'muted' },
     modules: [
       {
         id: 'contact-hero',
         type: 'hero',
         mode: 'static',
+        style: { variant: 'quiet' },
         config: {
           titleKey: 'contact.hero.title',
           bodyKey: 'contact.hero.body',
         },
       },
-      updatable('contact-info', 'contact', {
-        titleKey: 'contact.info.title',
-        entries: [
-          {
-            id: 'contact-info-shell',
-            labelKey: 'contact.info.labelOne',
-            valueKey: 'contact.info.valueOne',
-            type: 'email',
-          },
-        ],
-      }),
+      updatable(
+        'contact-info',
+        'contact',
+        {
+          titleKey: 'contact.info.title',
+          entries: [
+            {
+              id: 'contact-info-shell',
+              labelKey: 'contact.info.labelOne',
+              valueKey: 'contact.info.valueOne',
+              type: 'email',
+            },
+          ],
+        },
+        { surface: 'card' },
+      ),
       {
         id: 'contact-form',
         type: 'contact-form',
         mode: 'static',
+        style: { surface: 'raised', width: 'narrow' },
         config: {
           titleKey: 'contact.form.title',
           adapter: 'email-service',
@@ -120,12 +176,37 @@ export const defaultPages: PageDefinition[] = [
       },
     ],
   },
-  heroPage(
-    'members',
-    '/about/members',
-    'members.hero.title',
-    'members.hero.body',
-  ),
+  {
+    id: 'members',
+    path: '/about/members',
+    appearance: { width: 'shell', rhythm: 'compact' },
+    modules: [
+      {
+        id: 'members-hero',
+        type: 'hero',
+        mode: 'static',
+        config: {
+          titleKey: 'members.hero.title',
+          bodyKey: 'members.hero.body',
+        },
+      },
+      updatable(
+        'demo-cards',
+        'card-list',
+        {
+          titleKey: 'members.directory.title',
+          entries: [
+            {
+              id: 'demo-cards-shell',
+              titleKey: 'members.directory.cardOneTitle',
+              bodyKey: 'members.directory.cardOneBody',
+            },
+          ],
+        },
+        { layout: 'grid', tone: 'accent', spacing: 'compact' },
+      ),
+    ],
+  },
 ]
 
 /**
@@ -136,36 +217,15 @@ function updatable(
   id: string,
   type: string,
   config: Record<string, unknown>,
+  style?: ModuleStyle,
 ): ModuleInstance {
   return {
     id,
     type,
     mode: 'updatable',
     config,
+    style,
     fallback: { messageKey: 'updatable.fallback.unavailable' },
-  }
-}
-
-function heroPage(
-  id: string,
-  path: string,
-  titleKey: string,
-  bodyKey: string,
-): PageDefinition {
-  return {
-    id,
-    path,
-    modules: [
-      {
-        id: `${id}-hero`,
-        type: 'hero',
-        mode: 'static',
-        config: {
-          titleKey,
-          bodyKey,
-        },
-      },
-    ],
   }
 }
 
