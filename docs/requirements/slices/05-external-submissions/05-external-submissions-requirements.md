@@ -1,8 +1,8 @@
 # Slice 05 — external-submissions (requirements)
 
-**Status:** Draft  
+**Status:** Approved  
 **Owner:** Template maintainer  
-**Last updated:** 2026-08-20  
+**Last updated:** 2026-08-21  
 **Slice id:** 05  
 **Module(s):** submissions  
 **Primary feature name (code):** external-forms  

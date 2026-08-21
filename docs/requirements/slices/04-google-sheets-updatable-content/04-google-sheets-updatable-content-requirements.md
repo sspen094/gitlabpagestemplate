@@ -1,8 +1,8 @@
 # Slice 04 — google-sheets-updatable-content (requirements)
 
-**Status:** Draft  
+**Status:** Shipped — 2026-08-21  
 **Owner:** Template maintainer  
-**Last updated:** 2026-08-20  
+**Last updated:** 2026-08-21  
 **Slice id:** 04  
 **Module(s):** updatable-content, data-sources  
 **Primary feature name (code):** sheets-hydration  

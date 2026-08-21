@@ -19,15 +19,31 @@ export function CardListModule({ instance }: ModuleComponentProps) {
         }
         const card = entry as Record<string, unknown>
         const cardTitle = readCopy(card.titleKey, card.title)
+        const cardSubtitle = readCopy(card.subtitleKey, card.subtitle)
         const cardBody = readCopy(card.bodyKey, card.body)
+        const link = readString(card.link)
+        const imageUrl = readString(card.imageUrl)
         const key = readString(card.id) || `${instance.id}-card-${index}`
 
         return (
           <li key={key} className="module-card">
+            {imageUrl ? (
+              <img className="module-card__image" src={imageUrl} alt="" />
+            ) : null}
             {cardTitle ? (
-              <ModuleHeading>{cardTitle}</ModuleHeading>
+              <ModuleHeading>
+                {link ? <a href={link}>{cardTitle}</a> : cardTitle}
+              </ModuleHeading>
+            ) : null}
+            {cardSubtitle ? (
+              <p className="module-card__subtitle">{cardSubtitle}</p>
             ) : null}
             {cardBody ? <p>{cardBody}</p> : null}
+            {link && !cardTitle ? (
+              <p>
+                <a href={link}>{link}</a>
+              </p>
+            ) : null}
           </li>
         )
       })}

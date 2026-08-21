@@ -1,29 +1,26 @@
+import { useState } from 'react'
+import { t } from '../../text/t-lookup/index.ts'
 import { ModuleFrame } from './ModuleFrame.tsx'
+import {
+  ISO_DAY,
+  canStepMonth,
+  clampMonthToSteppingRange,
+  isoDate,
+  readUpcomingCount,
+  selectUpcomingEvents,
+  shiftMonth,
+  type CalendarEvent,
+  type CalendarMonth,
+} from './calendar-events.ts'
 import { readCopy, readString } from './copy.ts'
-import { ModuleHeading } from './heading-level.tsx'
+import { ModuleHeading, NestedHeadingScope } from './heading-level.tsx'
 import type { ModuleComponentProps, ModuleInstance } from './types.ts'
 
-/**
- * Event config stays column-shaped (`date` + title) so Slice 04 can map a
- * published sheet's date column and display column straight onto either layout.
- */
-export type CalendarEvent = {
-  key: string
-  date: string
-  title: string
-  detail: string
-}
-
-export type CalendarMonth = {
-  year: number
-  monthIndex: number
-}
-
-export type CalendarLayout = 'list' | 'month'
+export type CalendarLayout = 'list' | 'month' | 'hybrid'
 
 const MONTH_LAYOUTS: ReadonlySet<string> = new Set(['month', 'grid'])
+const HYBRID_LAYOUTS: ReadonlySet<string> = new Set(['hybrid', 'agenda'])
 const ISO_MONTH = /^(\d{4})-(\d{2})$/
-const ISO_DAY = /^(\d{4})-(\d{2})-(\d{2})$/
 
 export function CalendarModule({ instance }: ModuleComponentProps) {
   const title = readCopy(instance.config.titleKey, instance.config.title)
@@ -38,7 +35,9 @@ export function CalendarModule({ instance }: ModuleComponentProps) {
       labelledBy={headingId}
     >
       <ModuleHeading id={headingId}>{title || 'Calendar'}</ModuleHeading>
-      {layout === 'month' ? (
+      {layout === 'hybrid' ? (
+        <HybridCalendar instance={instance} events={events} />
+      ) : layout === 'month' ? (
         <MonthGrid
           events={events}
           month={resolveCalendarMonth(instance.config.month, events)}
@@ -50,15 +49,61 @@ export function CalendarModule({ instance }: ModuleComponentProps) {
   )
 }
 
+/**
+ * Next-events cards next to the month grid. The grid keeps every event so the
+ * month reads in full, while the cards answer "what is coming up".
+ */
+function HybridCalendar({
+  instance,
+  events,
+}: {
+  instance: ModuleInstance
+  events: readonly CalendarEvent[]
+}) {
+  const upcoming = selectUpcomingEvents(
+    events,
+    readUpcomingCount(instance.config.upcomingCount),
+  )
+  const upcomingTitle =
+    readCopy(instance.config.upcomingTitleKey, instance.config.upcomingTitle) ||
+    t('modules.calendar.upcoming')
+
+  return (
+    <div className="module-calendar__hybrid">
+      <NestedHeadingScope>
+        <div className="module-calendar__upcoming">
+          <ModuleHeading>{upcomingTitle}</ModuleHeading>
+          <EventList events={upcoming} />
+        </div>
+      </NestedHeadingScope>
+      <MonthGrid
+        events={events}
+        month={resolveCalendarMonth(
+          instance.config.month,
+          upcoming.length > 0 ? upcoming : events,
+        )}
+      />
+    </div>
+  )
+}
+
 function EventList({ events }: { events: readonly CalendarEvent[] }) {
   return (
     <ol className="module-calendar__list">
       {events.map((event) => (
         <li key={event.key} className="module-calendar__event">
           {event.date ? (
-            <time dateTime={event.date}>{formatEventDate(event.date)}</time>
+            <time dateTime={event.date}>
+              {formatEventDate(event.date)}
+              {event.time ? ` · ${event.time}` : ''}
+            </time>
           ) : null}
-          <p className="module-calendar__title">{event.title}</p>
+          <p className="module-calendar__title">
+            {event.link ? <a href={event.link}>{event.title}</a> : event.title}
+          </p>
+          {event.location ? (
+            <p className="module-calendar__location">{event.location}</p>
+          ) : null}
           {event.detail ? <p>{event.detail}</p> : null}
         </li>
       ))}
@@ -73,9 +118,18 @@ function MonthGrid({
   events: readonly CalendarEvent[]
   month: CalendarMonth
 }) {
-  const byDay = groupEventsByDay(events, month)
-  const firstOfMonth = new Date(month.year, month.monthIndex, 1)
-  const dayCount = new Date(month.year, month.monthIndex + 1, 0).getDate()
+  const incoming = clampMonthToSteppingRange(month)
+  const incomingKey = `${month.year}-${month.monthIndex}`
+  const [viewed, setViewed] = useState(incoming)
+  const [sourceKey, setSourceKey] = useState(incomingKey)
+  if (sourceKey !== incomingKey) {
+    setSourceKey(incomingKey)
+    setViewed(incoming)
+  }
+
+  const byDay = groupEventsByDay(events, viewed)
+  const firstOfMonth = new Date(viewed.year, viewed.monthIndex, 1)
+  const dayCount = new Date(viewed.year, viewed.monthIndex + 1, 0).getDate()
   const cells: (number | null)[] = Array.from<null>({
     length: firstOfMonth.getDay(),
   }).fill(null)
@@ -86,14 +140,38 @@ function MonthGrid({
     cells.push(null)
   }
 
+  const canPrev = canStepMonth(viewed, -1)
+  const canNext = canStepMonth(viewed, 1)
+  const caption = firstOfMonth.toLocaleDateString(undefined, {
+    month: 'long',
+    year: 'numeric',
+  })
+
   return (
     <div className="module-calendar__grid-wrap">
+      <div className="module-calendar__month-nav">
+        <button
+          type="button"
+          className="module-calendar__step"
+          disabled={!canPrev}
+          aria-label={t('modules.calendar.previousMonth')}
+          onClick={() => setViewed(shiftMonth(viewed, -1))}
+        >
+          <span aria-hidden="true">←</span>
+        </button>
+        <button
+          type="button"
+          className="module-calendar__step"
+          disabled={!canNext}
+          aria-label={t('modules.calendar.nextMonth')}
+          onClick={() => setViewed(shiftMonth(viewed, 1))}
+        >
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
       <table className="module-calendar__grid">
       <caption>
-        {firstOfMonth.toLocaleDateString(undefined, {
-          month: 'long',
-          year: 'numeric',
-        })}
+        {caption}
       </caption>
       <thead>
         <tr>
@@ -112,7 +190,7 @@ function MonthGrid({
                 <td key={`empty-${weekIndex}-${dayIndex}`} aria-hidden="true" />
               ) : (
                 <td key={`day-${day}`} className="module-calendar__day">
-                  <time dateTime={isoDay(month, day)}>{day}</time>
+                  <time dateTime={isoDay(viewed, day)}>{day}</time>
                   {(byDay.get(day) ?? []).map((event) => (
                     <p key={event.key} className="module-calendar__day-event">
                       {event.title}
@@ -130,7 +208,11 @@ function MonthGrid({
 }
 
 function readCalendarLayout(value: unknown): CalendarLayout {
-  return MONTH_LAYOUTS.has(readString(value)) ? 'month' : 'list'
+  const layout = readString(value)
+  if (HYBRID_LAYOUTS.has(layout)) {
+    return 'hybrid'
+  }
+  return MONTH_LAYOUTS.has(layout) ? 'month' : 'list'
 }
 
 function readCalendarEvents(instance: ModuleInstance): CalendarEvent[] {
@@ -149,6 +231,9 @@ function readCalendarEvents(instance: ModuleInstance): CalendarEvent[] {
         date: readString(item.date),
         title: readCopy(item.titleKey, item.title),
         detail: readCopy(item.detailKey, item.detail),
+        time: readString(item.time),
+        location: readString(item.location),
+        link: readString(item.link),
       },
     ]
   })
@@ -224,8 +309,7 @@ function weekdayLabels(): string[] {
 }
 
 function isoDay(month: CalendarMonth, day: number): string {
-  const paddedMonth = String(month.monthIndex + 1).padStart(2, '0')
-  return `${month.year}-${paddedMonth}-${String(day).padStart(2, '0')}`
+  return isoDate(month.year, month.monthIndex, day)
 }
 
 function formatEventDate(date: string): string {

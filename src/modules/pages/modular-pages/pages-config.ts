@@ -1,24 +1,12 @@
-import type { PageDefinition } from './types.ts'
-
-/** Same rows feed the list and month layouts — one date column, one display column. */
-const demoEvents = [
-  {
-    id: 'event-one',
-    date: '2026-09-01',
-    titleKey: 'demo.calendar.oneTitle',
-    detailKey: 'demo.calendar.oneDetail',
-  },
-  {
-    id: 'event-two',
-    date: '2026-09-15',
-    titleKey: 'demo.calendar.twoTitle',
-    detailKey: 'demo.calendar.twoDetail',
-  },
-]
+import type { ModuleInstance, PageDefinition } from './types.ts'
 
 /**
  * Registered pages. Add a page by appending an entry (id, path, modules).
  * Routes are derived from this list — no per-page React component.
+ *
+ * Every content module below is `mode: 'updatable'`: its id matches a worksheet
+ * in the configured spreadsheet (`sheet-mappings.ts`), and its static config is
+ * only the shell shown before the sheet resolves or when none is configured.
  */
 export const defaultPages: PageDefinition[] = [
   {
@@ -54,85 +42,75 @@ export const defaultPages: PageDefinition[] = [
         },
       },
       {
-        id: 'demo-intro',
-        type: 'text',
-        mode: 'static',
-        config: {
-          titleKey: 'demo.intro.title',
-          bodyKey: 'demo.intro.body',
-        },
-      },
-      {
-        id: 'demo-image',
-        type: 'image',
-        mode: 'static',
-        config: {
-          src: `${import.meta.env.BASE_URL}favicon.svg`,
-          alt: 'Template mark used as example module media',
-          captionKey: 'demo.image.caption',
-        },
-      },
-      {
-        id: 'demo-group',
+        id: 'demo-live',
         type: 'section',
         mode: 'static',
         config: {
-          titleKey: 'demo.section.title',
+          titleKey: 'demo.live.title',
           children: [
-            {
-              id: 'demo-cards',
-              type: 'card-list',
-              mode: 'static',
-              config: {
-                titleKey: 'demo.cards.title',
-                layout: 'grid',
-                entries: [
-                  {
-                    id: 'card-one',
-                    titleKey: 'demo.cards.oneTitle',
-                    bodyKey: 'demo.cards.oneBody',
-                  },
-                  {
-                    id: 'card-two',
-                    titleKey: 'demo.cards.twoTitle',
-                    bodyKey: 'demo.cards.twoBody',
-                  },
-                ],
-              },
-            },
-            {
-              id: 'demo-calendar',
-              type: 'calendar',
-              mode: 'static',
-              config: {
-                titleKey: 'demo.calendar.title',
-                layout: 'list',
-                events: demoEvents,
-              },
-            },
-            {
-              id: 'demo-calendar-month',
-              type: 'calendar',
-              mode: 'static',
-              config: {
-                titleKey: 'demo.calendar.monthTitle',
-                layout: 'month',
-                month: '2026-09',
-                events: demoEvents,
-              },
-            },
+            updatable('demo-text', 'text', {
+              titleKey: 'demo.live.textTitle',
+              blocks: [
+                { id: 'demo-text-shell', textKey: 'demo.live.textBody' },
+              ],
+            }),
+            updatable('demo-cards', 'card-list', {
+              layout: 'grid',
+              titleKey: 'demo.live.cardsTitle',
+              entries: [
+                {
+                  id: 'demo-cards-shell',
+                  titleKey: 'demo.live.cardOneTitle',
+                  bodyKey: 'demo.live.cardOneBody',
+                },
+              ],
+            }),
+            updatable('demo-calendar', 'calendar', {
+              layout: 'hybrid',
+              upcomingCount: 5,
+              titleKey: 'demo.live.eventsTitle',
+              upcomingTitleKey: 'demo.live.upcomingTitle',
+              events: [
+                {
+                  id: 'demo-calendar-shell',
+                  date: '2026-10-01',
+                  titleKey: 'demo.live.eventOneTitle',
+                  detailKey: 'demo.live.eventOneDetail',
+                },
+              ],
+            }),
           ],
         },
       },
     ],
   },
   heroPage('about', '/about', 'about.hero.title', 'about.hero.body'),
-  heroPage(
-    'contact',
-    '/about/contact',
-    'contact.hero.title',
-    'contact.hero.body',
-  ),
+  {
+    id: 'contact',
+    path: '/about/contact',
+    modules: [
+      {
+        id: 'contact-hero',
+        type: 'hero',
+        mode: 'static',
+        config: {
+          titleKey: 'contact.hero.title',
+          bodyKey: 'contact.hero.body',
+        },
+      },
+      updatable('contact-info', 'contact', {
+        titleKey: 'contact.info.title',
+        entries: [
+          {
+            id: 'contact-info-shell',
+            labelKey: 'contact.info.labelOne',
+            valueKey: 'contact.info.valueOne',
+            type: 'email',
+          },
+        ],
+      }),
+    ],
+  },
   heroPage(
     'members',
     '/about/members',
@@ -140,6 +118,24 @@ export const defaultPages: PageDefinition[] = [
     'members.hero.body',
   ),
 ]
+
+/**
+ * A sheet-backed module instance. The id doubles as the worksheet name, so a
+ * mapping is found without repeating the source in page config.
+ */
+function updatable(
+  id: string,
+  type: string,
+  config: Record<string, unknown>,
+): ModuleInstance {
+  return {
+    id,
+    type,
+    mode: 'updatable',
+    config,
+    fallback: { messageKey: 'updatable.fallback.unavailable' },
+  }
+}
 
 function heroPage(
   id: string,

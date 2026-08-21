@@ -101,8 +101,8 @@ describe('page registration', () => {
     )
 
     expect(
-      screen.getByRole('heading', { name: defaultText.demo.intro.title }),
+      screen.getByRole('heading', { name: defaultText.demo.live.title }),
     ).toBeTruthy()
-    expect(screen.getByText(defaultText.demo.intro.body)).toBeTruthy()
+    expect(screen.getByText(defaultText.demo.live.textBody)).toBeTruthy()
   })
 })

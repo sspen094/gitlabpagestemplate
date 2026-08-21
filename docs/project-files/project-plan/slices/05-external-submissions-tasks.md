@@ -1,9 +1,10 @@
 # Slice 05 — external-submissions (tasks)
 
 **Requirements:** `docs/requirements/slices/05-external-submissions/05-external-submissions-requirements.md`  
-**Last synced:** 2026-08-20
+**Last synced:** 2026-08-20  
+**Status:** plan-approved — **2026-08-21** (human: “set the next slice as active and approved”; requirements + this file + `success-criteria/traceability.md`)
 
-Executable task list for this vertical slice. Do not start implementation until the human approves this file and `success-criteria/traceability.md`.
+Executable task list for this vertical slice. Plan is approved; start implementation only via `/start-phase`.
 
 ## Acceptance criteria map (required at task sync)
 
