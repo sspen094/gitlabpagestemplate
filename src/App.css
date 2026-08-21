@@ -197,7 +197,8 @@
 .module-cards,
 .module-section,
 .module-calendar,
-.module-contact {
+.module-contact,
+.module-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -303,6 +304,65 @@
 
 .module-contact__entry dd {
   margin: 0;
+}
+
+.module-form__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 32rem;
+}
+
+.module-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.module-form__field label {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.module-form__field input,
+.module-form__field textarea {
+  font: inherit;
+  color: var(--text-h);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.module-form__field-error {
+  color: var(--text-h);
+  font-size: 0.9em;
+}
+
+.module-form__status:empty {
+  display: none;
+}
+
+.module-form__submit {
+  font: inherit;
+  color: var(--text-h);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.module-form__submit:hover,
+.module-form__submit:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+
+.module-form__submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
 }
 
 .module-calendar__list {

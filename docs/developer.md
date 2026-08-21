@@ -132,6 +132,8 @@ Production is a static `npm run build` deployed to GitHub Pages. There is no SQL
 
 **Google Sheets:** use one public, read-only spreadsheet. Name each worksheet tab for its target updatable module (`demo-text`, `demo-cards`, `demo-calendar`, `contact-info` in the demo). All rows on that tab use the module's schema. Set `VITE_GOOGLE_SHEETS_URL` and `VITE_GOOGLE_SHEETS_GIDS` locally, and for production as repository Actions variables or `github-pages` environment variables; see [`configuration/google-sheets.md`](configuration/google-sheets.md).
 
+**Contact form:** the example on `#/about/contact` submits through an external adapter only. Set `VITE_SUBMIT_EMAIL_ENDPOINT` for an HTTPS form service, or leave it empty to open the local mail app. Recipient and message templates are documented in [`configuration/README.md`](configuration/README.md).
+
 ---
 
 ## 8. Defects

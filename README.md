@@ -14,9 +14,13 @@ npm run dev
 
 **Site copy:** edit strings in `src/modules/text/t-lookup/text-config.ts`.
 
-**Pages:** add or reorder modules in `src/modules/pages/modular-pages/pages-config.ts`. Hash routes: `#/` (home), `#/demo` (one sheet-driven example of each updatable type), `#/about/contact` (contact details from a sheet), plus About/Members heroes for the navbar.
+**Pages:** add or reorder modules in `src/modules/pages/modular-pages/pages-config.ts`. Hash routes: `#/` (home), `#/demo` (one sheet-driven example of each updatable type), `#/about/contact` (sheet contact lines plus the Contact form), plus About/Members heroes for the navbar.
 
 **Nav:** add items in `src/modules/navigation/navbar/nav-config.ts`. Labels live under `nav.*` in `text-config.ts`.
+
+## Contact form
+
+`#/about/contact` includes a `contact-form` module. It POSTs to `VITE_SUBMIT_EMAIL_ENDPOINT` when that value is a public https URL. If the endpoint is empty, the browser opens the visitor's mail app (`mailto:`) using optional `VITE_SUBMIT_EMAIL_RECIPIENT`, `VITE_SUBMIT_EMAIL_SUBJECT`, and `VITE_SUBMIT_EMAIL_BODY_TEMPLATE` (`{name}`, `{email}`, `{message}`, `\n`). The site does not store submissions. See [`.env.example`](.env.example) and [`docs/configuration/README.md`](docs/configuration/README.md).
 
 ## Google Sheets updatable content
 

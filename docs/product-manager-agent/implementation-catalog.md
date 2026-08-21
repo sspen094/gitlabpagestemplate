@@ -10,8 +10,8 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 | Field | Value |
 |-------|-------|
-| **Next slice id** | `05` |
-| **Last updated** | 2026-08-21 (Slice 04 shipped) |
+| **Next slice id** | `06` |
+| **Last updated** | 2026-08-21 (Slice 05 shipped) |
 
 ---
 
@@ -24,6 +24,7 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 | 02-modular-page-system | Shipped 2026-08-20 | pages | modular-pages | Config-driven pages, baseline modules, calendar list + month grid (D01) |
 | 03-navigation | Shipped 2026-08-21 | navigation | navbar | Config-driven navbar, keyboard dropdowns, mobile hamburger drawer, layout quality gate (D01) |
 | 04-google-sheets-updatable-content | Shipped 2026-08-21 | updatable-content, data-sources | sheets-hydration | Published Sheets hydration (export+gid), text/cards/events/contact, shell-first fallback |
+| 05-external-submissions | Shipped 2026-08-21 | submissions | external-forms | Contact form via HTTPS email service or `mailto:` fallback (D01); no site-side storage |
 
 ---
 
@@ -33,10 +34,10 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 |------|--------|-------|
 | Hosting | Shipped | GitHub Pages via Actions; Vite `base` from `BASE_URL` |
 | Navigation | Shipped | Data-driven navbar; desktop dropdowns; mobile hamburger drawer |
-| Page modules | Shipped | Hero, text, image, cards, section, calendar (list/month/hybrid), contact; composer + registry |
+| Page modules | Shipped | Hero, text, image, cards, section, calendar (list/month/hybrid), contact, contact-form; composer + registry |
 | Text lookup | Shipped | `t()` with `[page].[section].[item]` keys; edit `text-config.ts` |
 | Updatable content | Shipped | Google Sheets published CSV by `gid`; shell-first hydrate; sanitized fallback |
-| External submissions | Planned | Email / redirect adapters; no site-side storage |
+| External submissions | Shipped | HTTPS email-service POST, redirect handoff, or `mailto:` fallback; no site-side storage |
 | HTTP API | N/A | No custom backend |
 | App database | N/A | No owned database |
 
@@ -60,7 +61,7 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 | Feature id | Routes / entry | Database | Status |
 |------------|----------------|----------|--------|
-| modular-pages | `#/` and `#/demo` (`pages-config.ts`); `#/about/contact` contact module | none | Shipped — [as-built](../modules/pages/features/modular-pages/README.md) |
+| modular-pages | `#/` and `#/demo` (`pages-config.ts`); `#/about/contact` contact + contact-form | none | Shipped — [as-built](../modules/pages/features/modular-pages/README.md) |
 
 ### navigation
 
@@ -73,6 +74,12 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 | Feature id | Routes / entry | Database | Status |
 |------------|----------------|----------|--------|
 | sheets-hydration | `#/demo` (text/cards/calendar); `#/about/contact` | none (read-only published Sheets) | Shipped — [as-built](../modules/updatable-content/features/sheets-hydration/README.md) |
+
+### submissions
+
+| Feature id | Routes / entry | Database | Status |
+|------------|----------------|----------|--------|
+| external-forms | `#/about/contact` (`contact-form` module) | none | Shipped — [as-built](../modules/submissions/features/external-forms/README.md) |
 
 ### foundations
 
@@ -87,6 +94,7 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 | System | Read / write | Status |
 |--------|--------------|--------|
 | Google Sheets (published) | read-only | Shipped |
+| External form / email endpoint | write (browser POST or mailto) | Shipped — owner-configured public URL; no site storage |
 
 ---
 

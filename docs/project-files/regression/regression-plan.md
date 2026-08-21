@@ -38,6 +38,8 @@ npm run build
 | R-03-build | Static build | `npm run build` | 03-navigation | Confirms navbar CSS/JS bundle into `dist/` |
 | R-04-test | Unit | `npm test` | 04-google-sheets-updatable-content | Feed client, schemas, hydrate, updatable modules |
 | R-04-build | Static build | `npm run build` | 04-google-sheets-updatable-content | Confirms hydration client bundles into `dist/` |
+| R-05-test | Unit | `npm test` | 05-external-submissions | Submit adapters + Contact form states |
+| R-05-build | Static build | `npm run build` | 05-external-submissions | Confirms form adapters bundle into `dist/` |
 
 _Add one row per slice closeout script. Do not add new tests under `tests/validation/`._
 
@@ -60,6 +62,8 @@ _Add one row per slice closeout script. Do not add new tests under `tests/valida
 | U-04-schema | Allow-list, sanitize, per-type parsers | `tests/unit/sheets-schemas.test.ts` | 04-google-sheets-updatable-content |
 | U-04-hydrate | Fallback, limit, env URL + gid map | `tests/unit/sheets-hydrate.test.ts` | 04-google-sheets-updatable-content |
 | U-04-modules | Shell-first hydrate, text/cards/events/contact | `tests/unit/updatable-modules.test.tsx` | 04-google-sheets-updatable-content |
+| U-05-adapters | Adapter-only submit, https POST, mailto, no storage | `tests/unit/submit-adapters.test.ts` | 05-external-submissions |
+| U-05-form | Contact validation, success/failure/handoff, D01 selection | `tests/unit/contact-form.test.tsx` | 05-external-submissions |
 
 ---
 

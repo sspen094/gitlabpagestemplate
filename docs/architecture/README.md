@@ -10,5 +10,6 @@
 | Pages | [`docs/implemented-design/design/pages.md`](../implemented-design/design/pages.md) |
 | Navigation | [`docs/implemented-design/design/navigation.md`](../implemented-design/design/navigation.md) |
 | Updatable content | [`docs/implemented-design/design/updatable-content.md`](../implemented-design/design/updatable-content.md) |
+| Submissions | [`docs/implemented-design/design/submissions.md`](../implemented-design/design/submissions.md) |
 
-**Shipped:** Slice 00 — static React SPA on GitHub Pages. Slice 01 — central `t()`. Slice 02 — config-driven pages, baseline modules, calendar (list + month grid). Slice 03 — data-driven navbar, keyboard dropdowns, mobile hamburger drawer (D01). Slice 04 — Google Sheets hydration for text, cards, events, and contact.
+**Shipped:** Slice 00 — static React SPA on GitHub Pages. Slice 01 — central `t()`. Slice 02 — config-driven pages, baseline modules, calendar (list + month grid). Slice 03 — data-driven navbar, keyboard dropdowns, mobile hamburger drawer (D01). Slice 04 — Google Sheets hydration for text, cards, events, and contact. Slice 05 — Contact form with HTTPS email service or `mailto:` fallback (D01).

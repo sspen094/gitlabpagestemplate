@@ -19,8 +19,8 @@ Master checklist for the layered test tree. Update when a folder moves from **Pl
 |------|--------|-------|
 | `tests/README.md` | Populated | Layout and run commands |
 | `tests/SCAFFOLD.md` | Populated | This file |
-| `tests/unit/` | Populated | `vite-base`, `app-shell`, `static-build`, `t-lookup`, `page-composer`, `module-definition`, `baseline-modules`, `navbar`, `mobile-quality-gate`, `sheets-feed-client`, `sheets-schemas`, `sheets-hydrate`, `updatable-modules` (`npm test`) |
-| `tests/end_to_end/smoke/` | Planned | Playwright UI smoke — not installed; Slice 04 used live `#/demo` + `#/about/contact` during Manual confirmation |
+| `tests/unit/` | Populated | `vite-base`, `app-shell`, `static-build`, `t-lookup`, `page-composer`, `module-definition`, `baseline-modules`, `navbar`, `mobile-quality-gate`, `sheets-feed-client`, `sheets-schemas`, `sheets-hydrate`, `updatable-modules`, `submit-adapters`, `contact-form` (`npm test`) |
+| `tests/end_to_end/smoke/` | Planned | Playwright UI smoke — not installed; Slice 05 used `#/about/contact` + Vitest form states |
 | `tests/validation/` | Shim | **Do not add new tests here** |
 
 ## Layers

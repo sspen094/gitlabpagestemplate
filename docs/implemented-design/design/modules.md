@@ -10,5 +10,4 @@ Ownership areas of the product. Slices deliver features inside a module.
 | navigation | Site chrome (navbar, dropdowns, mobile drawer) | [navbar](../../modules/navigation/features/navbar/README.md) |
 | updatable-content | Sheet-backed module hydration | [sheets-hydration](../../modules/updatable-content/features/sheets-hydration/README.md) |
 | data-sources | Published CSV/JSON feed client | [feed-client](../../modules/data-sources/README.md) |
-
-Later slices add external form submissions.
+| submissions | Public forms via external adapters only | [external-forms](../../modules/submissions/features/external-forms/README.md) |

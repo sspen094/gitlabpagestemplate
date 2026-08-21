@@ -79,6 +79,21 @@ export const defaultText: TextTree = {
       labelOne: 'Email',
       valueOne: 'hello@example.test',
     },
+    form: {
+      title: 'Send a message',
+      name: 'Name',
+      email: 'Email',
+      message: 'Message',
+      submit: 'Send',
+      sending: 'Sending…',
+      success: 'Thanks — your message was sent.',
+      handoff: 'Your mail app opened. Review the message there and send it.',
+      error: 'We could not send your message. Try again later.',
+      configError:
+        'This form is not connected to an external service yet.',
+      required: 'This field is required.',
+      invalidEmail: 'Enter a valid email address.',
+    },
   },
   members: {
     hero: {

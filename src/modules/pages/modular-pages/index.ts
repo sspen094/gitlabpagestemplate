@@ -34,4 +34,5 @@ export {
 } from './calendar-events.ts'
 export type { CalendarEvent, CalendarMonth } from './calendar-events.ts'
 export { ContactInfoModule } from './ContactInfoModule.tsx'
+export { ContactFormModule } from '../../submissions/external-forms/ContactFormModule.tsx'
 export { FallbackModule } from './FallbackModule.tsx'

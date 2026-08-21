@@ -109,6 +109,15 @@ export const defaultPages: PageDefinition[] = [
           },
         ],
       }),
+      {
+        id: 'contact-form',
+        type: 'contact-form',
+        mode: 'static',
+        config: {
+          titleKey: 'contact.form.title',
+          adapter: 'email-service',
+        },
+      },
     ],
   },
   heroPage(
