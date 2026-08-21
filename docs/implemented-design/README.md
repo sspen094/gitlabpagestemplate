@@ -8,5 +8,6 @@ Cross-cutting as-built design for Ex-React. Per-feature docs live under [`docs/m
 | [design/hosting.md](design/hosting.md) | Static build and GitHub Pages |
 | [design/text.md](design/text.md) | Central `t()` lookup |
 | [design/pages.md](design/pages.md) | Config-driven page composition |
+| [design/navigation.md](design/navigation.md) | Data-driven navbar + mobile drawer |
 
 Product requirements remain the architecture authority until `docs/requirements/vision/` is seeded.

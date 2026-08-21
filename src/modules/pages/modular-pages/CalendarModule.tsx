@@ -87,7 +87,8 @@ function MonthGrid({
   }
 
   return (
-    <table className="module-calendar__grid">
+    <div className="module-calendar__grid-wrap">
+      <table className="module-calendar__grid">
       <caption>
         {firstOfMonth.toLocaleDateString(undefined, {
           month: 'long',
@@ -124,6 +125,7 @@ function MonthGrid({
         ))}
       </tbody>
     </table>
+    </div>
   )
 }
 

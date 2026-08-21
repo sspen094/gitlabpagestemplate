@@ -61,12 +61,16 @@ The same event rows feed both layouts (`date` column + display/title column) so 
 |-----------|---------|
 | `#/` | `home` — hero + CTA to demo |
 | `#/demo` | `demo` — all baseline types, including list + month calendars |
+| `#/about` | `about` — section landing (Slice 03 nav target) |
+| `#/about/contact` | `contact` — About subsection |
+| `#/about/members` | `members` — About subsection |
 
 ## Out of scope
 
 - Google Sheets hydration (Slice 04)
-- Navbar (Slice 03)
 - FAQ, CTA-only, timeline, gallery, embed module types
+
+Navbar chrome shipped in Slice 03 — [navbar as-built](../../../navigation/features/navbar/README.md). About/Contact/Members heroes exist so dropdown targets resolve.
 
 ## Tests
 

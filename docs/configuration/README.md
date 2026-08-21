@@ -9,3 +9,5 @@
 Local run: `Copy-Item .env.example .env.local` then `npm run dev`. See the root [`README.md`](../../README.md).
 
 **Slice 02:** page composition is code config (`pages-config.ts`), not env. No new env keys. Published sheet URLs remain Slice 04.
+
+**Slice 03:** nav is code config (`nav-config.ts`) plus `t()` labels. No new env keys.

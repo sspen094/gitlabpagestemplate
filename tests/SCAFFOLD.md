@@ -19,8 +19,8 @@ Master checklist for the layered test tree. Update when a folder moves from **Pl
 |------|--------|-------|
 | `tests/README.md` | Populated | Layout and run commands |
 | `tests/SCAFFOLD.md` | Populated | This file |
-| `tests/unit/` | Populated | `vite-base`, `app-shell`, `static-build`, `t-lookup`, `page-composer`, `module-definition`, `baseline-modules` (`npm test`) |
-| `tests/end_to_end/smoke/` | Planned | Playwright UI smoke — not installed; Slice 02 used Cursor browser smoke on `#/` and `#/demo` |
+| `tests/unit/` | Populated | `vite-base`, `app-shell`, `static-build`, `t-lookup`, `page-composer`, `module-definition`, `baseline-modules`, `navbar`, `mobile-quality-gate` (`npm test`) |
+| `tests/end_to_end/smoke/` | Planned | Playwright UI smoke — not installed; Slice 03 used Cursor browser smoke on `#/demo`, `#/about`, `#/about/contact` |
 | `tests/validation/` | Shim | **Do not add new tests here** |
 
 ## Layers

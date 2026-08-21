@@ -13,4 +13,4 @@ Cross-cutting notes for config-driven composition. Feature as-built: [`docs/modu
 ## Not this slice
 
 - Sheets fetch/hydration.
-- Site navigation chrome.
+- Site navigation chrome (shipped in Slice 03 — see [navigation.md](navigation.md)).

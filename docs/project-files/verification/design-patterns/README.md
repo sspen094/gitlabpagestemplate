@@ -15,6 +15,7 @@ Add one markdown file per concern, for example:
 | `ui-controls.md` | Title Case, page layout, filter order |
 | `layering.md` | UI → service → repository; no SQL in UI |
 | `api.md` | HTTP API conventions (when applicable) |
+| `mobile-layout.md` | Viewport wrap/overflow quality gate (DP-ML-xx) |
 
 Use checklist items agents can mark PASS/FAIL:
 

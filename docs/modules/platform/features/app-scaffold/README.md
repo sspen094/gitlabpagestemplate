@@ -26,7 +26,7 @@ A Vite + React (TypeScript) SPA at the repository root that builds to static fil
 
 ## Out of scope (later slices)
 
-Page modules, navigation, Google Sheets, submission forms, demo content.
+Google Sheets, submission forms. Page modules (Slice 02) and navbar (Slice 03) have shipped.
 
 Shell copy is now resolved via Slice 01 `t()` — see [t-lookup](../../../text/features/t-lookup/README.md).
 
