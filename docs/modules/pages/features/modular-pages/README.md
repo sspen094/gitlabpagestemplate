@@ -18,7 +18,8 @@ Pages are registered as configuration (`id`, `path`, ordered `modules`). Hash ro
 | `src/modules/pages/modular-pages/validate.ts` | Structural + type-specific config checks |
 | `src/modules/pages/modular-pages/registry.ts` | Module type → component |
 | `src/modules/pages/modular-pages/pipeline.tsx` | `ModulePipeline` + `PageComposer` |
-| `src/modules/pages/modular-pages/pages-config.ts` | `defaultPages` (home, demo, About/Contact/Members) |
+| `src/modules/pages/modular-pages/pages-config.ts` | `defaultPages` (home, Events, About/Contact/Members) |
+| `src/modules/pages/modular-pages/style.ts` | Closed page appearance + module style vocabulary |
 | `src/modules/pages/modular-pages/PageRoutes.tsx` | Hash routes from page config |
 | `src/modules/pages/modular-pages/heading-level.tsx` | Nested heading levels |
 | `src/modules/pages/modular-pages/calendar-events.ts` | Event shape + date helpers, including upcoming-event selection |

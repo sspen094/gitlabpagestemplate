@@ -14,9 +14,25 @@ npm run dev
 
 **Site copy:** edit strings in `src/modules/text/t-lookup/text-config.ts`.
 
-**Pages:** add or reorder modules in `src/modules/pages/modular-pages/pages-config.ts`. Hash routes: `#/` (home), `#/demo` (one sheet-driven example of each updatable type), `#/about/contact` (sheet contact lines plus the Contact form), plus About/Members heroes for the navbar.
+**Pages:** add or reorder modules in `src/modules/pages/modular-pages/pages-config.ts`. Hash routes: `#/` (home), `#/events` (sheet-driven calendar), `#/about`, `#/about/contact` (sheet contact lines plus the Contact form), `#/about/members` (sheet-driven card directory).
 
 **Nav:** add items in `src/modules/navigation/navbar/nav-config.ts`. Labels live under `nav.*` in `text-config.ts`.
+
+**Appearance:** edit `src/modules/theme/site-theme/config.ts` for site-wide colors, type, and spacing; set per-page `appearance` and per-module `style` options in `pages-config.ts`.
+
+## Guides
+
+| Task | Guide |
+|------|-------|
+| Update content in Google Sheets (no code) | [docs/guides/editor-google-sheets.md](docs/guides/editor-google-sheets.md) |
+| Add a page | [docs/guides/add-a-page.md](docs/guides/add-a-page.md) |
+| Add a module | [docs/guides/add-a-module.md](docs/guides/add-a-module.md) |
+| Configure an updatable section | [docs/guides/updatable-section.md](docs/guides/updatable-section.md) |
+| Map a Google Sheets data source | [docs/guides/google-sheets-source.md](docs/guides/google-sheets-source.md) |
+| Rebrand and style | [docs/guides/rebrand-and-style.md](docs/guides/rebrand-and-style.md) |
+| Fork, rename, adapt into a real site | [docs/guides/fork-and-rename.md](docs/guides/fork-and-rename.md) |
+
+Full documentation map: [docs/README.md](docs/README.md).
 
 ## Contact form
 

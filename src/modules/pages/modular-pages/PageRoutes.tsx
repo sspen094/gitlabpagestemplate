@@ -15,7 +15,12 @@ export function PageRoutes({
         <Route
           key={page.id}
           path={page.path}
-          element={<PageComposer modules={page.modules} />}
+          element={
+            <PageComposer
+              modules={page.modules}
+              appearance={page.appearance}
+            />
+          }
         />
       ))}
       <Route

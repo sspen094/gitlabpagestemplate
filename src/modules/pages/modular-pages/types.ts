@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react'
+import type { ModuleStyle, PageAppearance } from './style.ts'
 
 /**
  * Module definition model (product §8.1). Shared by static modules now and
@@ -32,12 +33,16 @@ export type ModuleInstance = {
   config: ModuleConfig
   dataSource?: DataSourceRef
   fallback?: ModuleFallback
+  /** Named style options from the closed vocabulary in `style.ts`. */
+  style?: ModuleStyle
 }
 
 export type PageDefinition = {
   id: string
   path: string
   modules: ModuleInstance[]
+  /** Page-level layout and appearance options. */
+  appearance?: PageAppearance
 }
 
 export type ValidationCode =
@@ -47,6 +52,7 @@ export type ValidationCode =
   | 'unknown-type'
   | 'missing-config'
   | 'updatable-unhydrated'
+  | 'style-degraded'
 
 export type ValidationIssue = {
   code: ValidationCode

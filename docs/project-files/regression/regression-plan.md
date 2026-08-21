@@ -40,6 +40,8 @@ npm run build
 | R-04-build | Static build | `npm run build` | 04-google-sheets-updatable-content | Confirms hydration client bundles into `dist/` |
 | R-05-test | Unit | `npm test` | 05-external-submissions | Submit adapters + Contact form states |
 | R-05-build | Static build | `npm run build` | 05-external-submissions | Confirms form adapters bundle into `dist/` |
+| R-06-test | Unit | `npm test` | 06-demo-site-and-docs | Demo pin, theme tokens, page/module style |
+| R-06-build | Static build | `npm run build` | 06-demo-site-and-docs | Confirms themed sample site bundles into `dist/` |
 
 _Add one row per slice closeout script. Do not add new tests under `tests/validation/`._
 
@@ -64,6 +66,9 @@ _Add one row per slice closeout script. Do not add new tests under `tests/valida
 | U-04-modules | Shell-first hydrate, text/cards/events/contact | `tests/unit/updatable-modules.test.tsx` | 04-google-sheets-updatable-content |
 | U-05-adapters | Adapter-only submit, https POST, mailto, no storage | `tests/unit/submit-adapters.test.ts` | 05-external-submissions |
 | U-05-form | Contact validation, success/failure/handoff, D01 selection | `tests/unit/contact-form.test.tsx` | 05-external-submissions |
+| U-06-demo | Realistic routes, module types, placeholder fixtures | `tests/unit/demo-site.test.ts` | 06-demo-site-and-docs |
+| U-06-theme | Token emission, palettes, malformed fallback | `tests/unit/site-theme.test.tsx` | 06-demo-site-and-docs |
+| U-06-style | Page appearance + module style + invalid fallback | `tests/unit/module-style.test.tsx` | 06-demo-site-and-docs |
 
 ---
 
@@ -81,4 +86,4 @@ When fixing a defect, add a row here **before** closeout:
 
 Every shipped slice adds or updates rows in this file during the **final phase** of `*-tasks.md`. A slice is not closed until listed tests have been **executed** successfully (or N/A documented).
 
-See `docs/product-manager-agent/regression-and-closeout.md`.
+See `docs/requirements/README.md` for slice success-criteria paths.

@@ -18,7 +18,7 @@ Each slice is one vertical delivery increment. Slice requirements live under [`s
 | 03 | Navigation | [03](slices/03-navigation/03-navigation-requirements.md) | [tasks](../project-files/project-plan/slices/03-navigation-tasks.md) | §7.3, §13 |
 | 04 | Google Sheets updatable content | [04](slices/04-google-sheets-updatable-content/04-google-sheets-updatable-content-requirements.md) | [tasks](../project-files/project-plan/slices/04-google-sheets-updatable-content-tasks.md) | §6.2, §6.3, §7.2, §7.5, §8, §10, §11 |
 | 05 | External submission flows | [05](slices/05-external-submissions/05-external-submissions-requirements.md) | [tasks](../project-files/project-plan/slices/05-external-submissions-tasks.md) | §7.6 |
-| 06 | Demo site & fork/editor documentation | [06](slices/06-demo-site-and-docs/06-demo-site-and-docs-requirements.md) | [tasks](../project-files/project-plan/slices/06-demo-site-and-docs-tasks.md) | §2, §5.2, §9, §14, §16 |
+| 06 | Demo site, theming & styling, fork/editor documentation | [06](slices/06-demo-site-and-docs/06-demo-site-and-docs-requirements.md) | [tasks](../project-files/project-plan/slices/06-demo-site-and-docs-tasks.md) | §2, §5.2, §9, §12, §13, §14, §15, §16 |
 
 ## Delivery order
 
@@ -28,4 +28,4 @@ Slices are sequenced by dependency: 00 (scaffold) → 01 (text) → 02 (modules)
 
 - Slice folders contain only the main requirements `.md`, plus optional `deviations/`, `input-files/`, and `success-criteria/`.
 - Never nest `src/` or `tests/` under a slice folder.
-- Cursor syncs `*-tasks.md` and `success-criteria/traceability.md` from these requirements — see [`.cursor/skills/ex-react-slice-plan/SKILL.md`](../../.cursor/skills/ex-react-slice-plan/SKILL.md).
+- Keep `docs/project-files/project-plan/slices/*-tasks.md` and `success-criteria/traceability.md` in sync with these requirements.

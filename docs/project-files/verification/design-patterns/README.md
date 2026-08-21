@@ -1,10 +1,10 @@
 # Design patterns (verification criteria)
 
-Project-wide **checklist criteria** for Cursor verification (`/v`, optional `/v+codex`). These are **not** executable tests.
+Project-wide **checklist criteria**. These are **not** executable tests.
 
 ## Role
 
-When a slice has no `success-criteria/` files, or as a **baseline merged with slice criteria**, agents load every `*.md` file here (except this README).
+When a slice has no `success-criteria/` files, or as a **baseline merged with slice criteria**, load every `*.md` file here (except this README).
 
 ## Adding patterns
 
@@ -17,7 +17,7 @@ Add one markdown file per concern, for example:
 | `api.md` | HTTP API conventions (when applicable) |
 | `mobile-layout.md` | Viewport wrap/overflow quality gate (DP-ML-xx) |
 
-Use checklist items agents can mark PASS/FAIL:
+Use checklist items that can be marked PASS/FAIL:
 
 ```markdown
 ## DP-01 Page filters above content

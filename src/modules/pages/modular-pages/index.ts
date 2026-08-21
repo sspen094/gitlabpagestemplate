@@ -8,9 +8,34 @@ export type {
   ModuleMode,
   PageDefinition,
   PreparedModule,
+  ValidationCode,
   ValidationIssue,
 } from './types.ts'
 export { validateModuleInstance, prepareModule } from './validate.ts'
+export {
+  DEFAULT_MODULE_STYLE,
+  DEFAULT_PAGE_APPEARANCE,
+  MODULE_LAYOUTS,
+  moduleStyleClassNames,
+  pageAppearanceClassNames,
+  readLayoutOption,
+  resolveModuleStyle,
+  resolvePageAppearance,
+} from './style.ts'
+export type {
+  ModuleStyle,
+  ModuleVariant,
+  PageAppearance,
+  PageRhythm,
+  PageWidth,
+  ResolvedModuleStyle,
+  ResolvedPageAppearance,
+  StyleAlignment,
+  StyleSpacing,
+  StyleSurface,
+  StyleTone,
+  StyleWidth,
+} from './style.ts'
 export {
   registerModule,
   getModuleComponent,

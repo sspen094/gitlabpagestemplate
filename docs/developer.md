@@ -1,114 +1,62 @@
 # Developer guide — Ex-React
 
-Short onboarding for humans running this repo in Cursor. **Agents read `AGENTS.md`; you read this.**
+How this repo is laid out and how to run it locally. Task walkthroughs (add a page, rebrand, fork) live in [`guides/README.md`](guides/README.md).
 
-**Product requirements (template stage):** [`requirements/requirements.md`](requirements/requirements.md). Delivery slices: [`requirements/README.md`](requirements/README.md).
-
-**ChatGPT / Codex:** attach `docs/product-manager-agent/` for slice requirements drafting.
+**Product requirements:** [`requirements/requirements.md`](requirements/requirements.md). Delivery slices: [`requirements/README.md`](requirements/README.md).
 
 ---
 
-## 1. Before you open Cursor
+## 1. Before you start
 
 | Step | You provide |
 |------|-------------|
 | **Project profile** | Static React site on GitHub Pages; Google Sheets for selected updatable content; no custom backend. |
-| **Git branch** | `main` until the first feature slice. **Before slice 01:** create a branch per slice (e.g. `01-navigation-v1`). Put `BRANCH=` in `.cursor/active-slice`. |
-| **Vision** | Keep refining [`requirements/requirements.md`](requirements/requirements.md); later move architecture + UI spec to `docs/requirements/vision/`. |
-| **Slice 01+** | Draft with PM agent (`docs/product-manager-agent/`), then save under `docs/requirements/slices/` (§3). Include **SC-xx** and **regression intent**. |
-| **Env** | Optional `.env.example` → `.env.local` for Vite base path, the public Google Spreadsheet URL, and worksheet gids. See §7. |
-| **Local Cursor** | `cp .cursor/active-slice.example .cursor/active-slice`, set `SLICE_ID`, `MODULE_ID`, `FEATURE_NAME`. `.cursor/hooks.json` is already present for the stop hook. |
-
-**Branching rule:** requirements and project plan on `main` (or a short-lived `plan/NN-name` branch); implementation on the branch named in `active-slice`. Merge plan before agents build.
+| **Vision** | [`requirements/requirements.md`](requirements/requirements.md) is the product spec until `docs/requirements/vision/` exists. |
+| **Env** | Optional `.env.example` → `.env.local` for Vite base path, the public Google Spreadsheet URL, and worksheet gids. See §5. |
 
 ---
 
-## 2. Modules vs slices (how to think)
+## 2. Modules vs slices
 
 | Concept | What it is | Where it lives |
 |---------|------------|----------------|
-| **Slice** | A **delivery unit** — one increment you ship (requirements → tasks → code → tests). Numbered `01-…`, `02-…`. | `docs/requirements/slices/NN-name/` |
-| **Module** | A **product / ownership area** (pages, shared blocks, sheets mapping, navigation). | `src/` (and as-built under `docs/modules/<module_id>/`) |
-| **Feature** | One capability inside a module (kebab-case id). A slice may touch one or more features. | Colocated under `src/` for that area |
+| **Slice** | A **delivery unit** — one increment (requirements → tasks → code → tests). Numbered `00-…` through `06-…`. | `docs/requirements/slices/NN-name/` |
+| **Module** | A **product / ownership area** (pages, sheets mapping, navigation, theme). | `src/` and as-built under `docs/modules/<module_id>/` |
+| **Feature** | One capability inside a module (kebab-case id). | Colocated under `src/` for that area |
 
-**Example:** slice `02-updatable-cards-v1` → module `content-modules` → feature `card-grid`.
-
-Register modules in `docs/implemented-design/design/modules.md` when you add the first slice that uses them.
+Register modules in `docs/implemented-design/design/modules.md` when you add a new ownership area.
 
 ---
 
-## 3. Where requirements go (first feature slice)
+## 3. Where requirements go
 
-Copy `docs/requirements/slices/_xx-slice-name/` → `docs/requirements/slices/01-your-feature/` when that template exists.
-
-**Allowed in that folder only:**
+Slice folders live under `docs/requirements/slices/`. **Allowed in that folder only:**
 
 ```text
-01-your-feature-requirements.md    ← you write this (PM agent can draft)
+NN-name-requirements.md            ← product requirements for the increment
 deviations/                        ← mid-slice pivots (optional)
 input-files/                       ← approved mockups (optional)
-success-criteria/                  ← SC-xx checklists (recommended always)
+success-criteria/                  ← SC-xx checklists
 ```
 
 **Never** put `src/` or `tests/` inside the slice folder.
 
 Header of the requirements doc should include: **Module(s):**, **Feature id(s):**, acceptance criteria, out of scope.
 
----
-
-## 4. Sync the project plan (prompt)
-
-After requirements are draft or approved, ask Cursor (uses **slice-plan** skill when present):
-
-```text
-Read docs/requirements/slices/01-your-feature/01-your-feature-requirements.md.
-Sync docs/project-files/project-plan/slices/01-your-feature-tasks.md from it
-(phased tasks, **mandatory final phase**: SC-xx, test create+register+**execute**, regression-plan, SCAFFOLD, as-built + **project-wide docs update** — no implementation yet).
-Stop when the tasks file matches requirements.
-```
-
-**You stay in control:** review the tasks file before any build chat. Edit requirements yourself; agents sync tasks, they do not rewrite your requirements without ask.
+Executable task lists live under `docs/project-files/project-plan/slices/`. Keep them in sync with the matching requirements file.
 
 ---
 
-## 5. Build loop (stay in control)
+## 4. Delivery loop
 
-1. Set `.cursor/active-slice` (`SLICE_ID`, `MODULE_ID`, `FEATURE_NAME`, `SCOPE_OVERRIDE=false` for slice work).
-2. New chat — agent reads `HANDOFF.md` → `active-slice` → `AGENTS.md` → `ex-react-core` skill.
-3. Prompt: *Execute tasks in `docs/project-files/project-plan/slices/<SLICE_ID>-tasks.md` for the next unchecked item.*
-4. Agent marks tasks `- [x]` with dates as it finishes; you review diffs.
-5. **Slice closeout:** final-phase tasks are not optional — tests must be **written and executed**; SC-xx evaluated; `regression-plan.md` updated; **and** a **project-wide documentation update** before you merge.
-6. **STOP gates** in `bootstrap.md` apply only during initial bootstrap — for features, **you** approve merges and deploys.
-
-**Scope:** with `SCOPE_OVERRIDE=false`, agents should not edit other slices or platform files unless you say so in chat.
-
-**Verification:** append `/v` to a message (or use the `/v` slash command) to force implement + test + runtime proof before “done”.
-
-**Verification + Codex (optional):** `/v+codex` when you want a read-only second opinion.
-
-**Cleanup:** `/cleanup` — tests, lint, format, build.
-
-**Commits:** agents commit only when you explicitly ask.
+1. Write or update requirements under `docs/requirements/slices/<id>/`.
+2. Sync `docs/project-files/project-plan/slices/<id>-tasks.md` (phased tasks, including tests, success criteria, as-built, and a project-wide docs update).
+3. Implement on a named branch; mark tasks complete as they land.
+4. Before merge: run `npm test`, `npm run lint`, and `npm run build`; evaluate SC-xx; refresh as-built docs.
 
 ---
 
-## 6. Cursor skills and slash commands
-
-| Item | Purpose |
-|------|---------|
-| **`.cursor/skills/ex-react-core/SKILL.md`** | Repo layout, slice loop, env, docs lifecycle — **always on** for build chats. |
-| **`.cursor/skills/ex-react-slice-plan/SKILL.md`** | Sync `*-tasks.md`, SCAFFOLD, success-criteria, regression closeout — **recommended**. |
-| **`.cursor/skills/ex-react-manual-confirmation/SKILL.md`** | Living change checklist during human review. |
-| **`.cursor/skills/ex-react-verify-codex/SKILL.md`** | **Optional** — `/v+codex` workflow. |
-| **`/start-phase`** | Plan then implement the next incomplete **phase** (all remaining tasks in that phase). |
-| **`/v`** | Verification mode — implement, test, smoke the page. |
-| **`/cleanup`** | Lint + format + unit tests + build. |
-| **`/v+codex`** | **Optional** — criteria gate + Codex review. |
-| **Rules** | `session-handoff`, `active-slice`, `slice-deviations`, `verification-mode`, `cleanup-mode`, `ui-page-patterns`, `ui-title-case`. |
-
----
-
-## 7. Environment — what you fill in
+## 5. Environment — what you fill in
 
 | File | Who edits | What to fill |
 |------|-----------|--------------|
@@ -126,31 +74,28 @@ Production is a static `npm run build` deployed to GitHub Pages. There is no SQL
 
 **Static copy:** edit strings in `src/modules/text/t-lookup/text-config.ts`. Components use `t('page.section.item')`. Local `npm run dev` hot-reloads those edits; GitHub Pages updates only after a deploy.
 
-**Pages:** edit `src/modules/pages/modular-pages/pages-config.ts` to add pages or module instances. Preview `#/` and `#/demo`.
+**Pages:** edit `src/modules/pages/modular-pages/pages-config.ts` to add pages or module instances. Preview `#/`, `#/events`, `#/about`, `#/about/contact`, and `#/about/members`. Step-by-step: [`guides/add-a-page.md`](guides/add-a-page.md).
+
+**Appearance:** site-wide tokens in `src/modules/theme/site-theme/config.ts`; per-page `appearance` and per-module `style` options in `pages-config.ts`. See [`guides/rebrand-and-style.md`](guides/rebrand-and-style.md).
 
 **Nav:** edit `src/modules/navigation/navbar/nav-config.ts` for top-level links and dropdowns. Labels are `nav.items.*` / `nav.chrome.*` in `text-config.ts`. Narrow viewports use a hamburger drawer.
 
-**Google Sheets:** use one public, read-only spreadsheet. Name each worksheet tab for its target updatable module (`demo-text`, `demo-cards`, `demo-calendar`, `contact-info` in the demo). All rows on that tab use the module's schema. Set `VITE_GOOGLE_SHEETS_URL` and `VITE_GOOGLE_SHEETS_GIDS` locally, and for production as repository Actions variables or `github-pages` environment variables; see [`configuration/google-sheets.md`](configuration/google-sheets.md).
+**Google Sheets:** use one public, read-only spreadsheet. Name each worksheet tab for its target updatable module (`demo-text`, `demo-cards`, `demo-calendar`, `contact-info` in the demo). All rows on that tab use the module's schema. Set `VITE_GOOGLE_SHEETS_URL` and `VITE_GOOGLE_SHEETS_GIDS` locally, and for production as repository Actions variables or `github-pages` environment variables; see [`guides/google-sheets-source.md`](guides/google-sheets-source.md) for the walkthrough and [`configuration/google-sheets.md`](configuration/google-sheets.md) for the reference. Hand [`guides/editor-google-sheets.md`](guides/editor-google-sheets.md) to whoever maintains the content.
 
 **Contact form:** the example on `#/about/contact` submits through an external adapter only. Set `VITE_SUBMIT_EMAIL_ENDPOINT` for an HTTPS form service, or leave it empty to open the local mail app. Recipient and message templates are documented in [`configuration/README.md`](configuration/README.md).
 
 ---
 
-## 8. Defects
+## 6. Defects
 
-This template does not use ClickUp. Track issues in GitHub (or chat) unless you later add a defect lane.
+Track issues in GitHub (or chat).
 
 ---
 
-## 9. What to do next (checklist)
+## 7. What to do next (checklist)
 
 - [ ] Placeholders replaced (`Ex-React`, `ex-react`)
 - [ ] `requirements.md` reviewed
-- [ ] React app scaffolds and `npm run dev` works
-- [ ] First feature requirements in `docs/requirements/slices/01-…/` (PM agent draft → human edit → approve)
-- [ ] Optional: `success-criteria/` SC-xx rows for acceptance criteria
-- [ ] Tasks file synced; you approved it (includes final-phase test + verification tasks)
-- [ ] Branch created; `active-slice` set
-- [ ] Build chat: execute next task in slice tasks file
-
-**Deeper reference:** `docs/bootstrap/bootstrap.md` (generic bootstrap kit), `AGENTS.md` (agents).
+- [ ] `npm run dev` works
+- [ ] Content replaced via [`guides/fork-and-rename.md`](guides/fork-and-rename.md)
+- [ ] Theme and style options set via [`guides/rebrand-and-style.md`](guides/rebrand-and-style.md)

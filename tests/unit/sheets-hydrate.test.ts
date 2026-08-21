@@ -176,7 +176,7 @@ describe('config + mapping', () => {
   })
 
   it('finds a mapping by page and module id', () => {
-    const found = findMapping(sheetMappings, 'demo', 'demo-calendar')
+    const found = findMapping(sheetMappings, 'events', 'demo-calendar')
     expect(found?.type).toBe('event-list')
     expect(found?.tab).toBe('demo-calendar')
   })

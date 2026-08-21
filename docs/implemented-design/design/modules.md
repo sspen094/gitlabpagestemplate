@@ -11,3 +11,5 @@ Ownership areas of the product. Slices deliver features inside a module.
 | updatable-content | Sheet-backed module hydration | [sheets-hydration](../../modules/updatable-content/features/sheets-hydration/README.md) |
 | data-sources | Published CSV/JSON feed client | [feed-client](../../modules/data-sources/README.md) |
 | submissions | Public forms via external adapters only | [external-forms](../../modules/submissions/features/external-forms/README.md) |
+| theme | Site-wide visual tokens (not from Sheets) | [site-theme](../../modules/theme/features/site-theme/README.md) |
+| demo-site | Placeholder sample site + how-to guides | [demo-and-guides](../../modules/demo-site/features/demo-and-guides/README.md) |

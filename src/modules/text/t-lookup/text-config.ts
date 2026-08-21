@@ -20,32 +20,21 @@ export type TextTree = {
 export const defaultText: TextTree = {
   home: {
     header: {
-      brand: 'MY APP',
+      brand: 'SAMPLE COMMUNITY',
     },
     hero: {
-      title: 'My Website Template',
-      body: 'This is a static React template for GitHub Pages. Content modules and live data sources are not configured yet.',
-      cta: 'See demo',
+      title: 'A sample home for a connected community',
+      body: 'This placeholder site demonstrates how a small organization can share updates, introduce its work, and invite people to upcoming events.',
+      cta: 'Browse sample events',
     },
-  },
-  demo: {
-    hero: {
-      title: 'Modular demo',
-      subtitle: 'Baseline modules rendered from page configuration.',
-      cta: 'Back home',
+    introduction: {
+      title: 'Welcome',
+      body: 'Use this sample section for a concise introduction. Every page is assembled from reusable modules, so a developer can adapt the structure without creating a new page component.',
+      caption: 'Replace this placeholder mark with an image for your organization.',
     },
-    live: {
-      title: 'Updatable from Google Sheets',
-      textTitle: 'Announcements',
-      textBody:
-        'Placeholder copy shown until a published Google Sheet is connected. Each row of the worksheet becomes its own paragraph.',
-      cardsTitle: 'Featured items',
-      cardOneTitle: 'Sample card',
-      cardOneBody: 'Connect a sheet to replace these cards.',
-      eventsTitle: 'Upcoming events',
-      upcomingTitle: 'Next five events',
-      eventOneTitle: 'Sample event',
-      eventOneDetail: 'Connect a sheet to replace these events.',
+    updates: {
+      title: 'Community updates',
+      body: 'This placeholder announcement is replaced by rows from the public sample sheet when Google Sheets is configured.',
     },
   },
   nav: {
@@ -57,7 +46,7 @@ export const defaultText: TextTree = {
     },
     items: {
       home: 'Home',
-      demo: 'Demo',
+      events: 'Events',
       about: 'About',
       contact: 'Contact',
       members: 'Members',
@@ -65,14 +54,19 @@ export const defaultText: TextTree = {
   },
   about: {
     hero: {
-      title: 'About',
-      body: 'Section landing. Subpages are listed in the About dropdown.',
+      title: 'About the sample community',
+      body: 'A believable section landing page built entirely from reusable page modules.',
+    },
+    story: {
+      title: 'Our placeholder story',
+      body: 'This copy is intentionally fictional. Replace it with your organization’s purpose, history, and the people it serves when adapting the template.',
+      caption: 'Sample media demonstrates the image module with required alternative text.',
     },
   },
   contact: {
     hero: {
       title: 'Contact',
-      body: 'Example About subsection.',
+      body: 'Use the sample details or form below to demonstrate an external contact workflow.',
     },
     info: {
       title: 'Get in touch',
@@ -98,7 +92,24 @@ export const defaultText: TextTree = {
   members: {
     hero: {
       title: 'Members',
-      body: 'Example About subsection.',
+      body: 'A sample directory shows how repeatable cards can present people, programs, or resources.',
+    },
+    directory: {
+      title: 'Sample member directory',
+      cardOneTitle: 'Sample member',
+      cardOneBody: 'This placeholder card is replaced by rows from the public sample sheet when configured.',
+    },
+  },
+  events: {
+    hero: {
+      title: 'Events',
+      body: 'Browse fictional events in list and calendar views.',
+    },
+    calendar: {
+      title: 'Sample event calendar',
+      upcomingTitle: 'Coming up',
+      eventOneTitle: 'Sample neighborhood gathering',
+      eventOneDetail: 'A fictional event used to demonstrate the calendar module.',
     },
   },
   app: {

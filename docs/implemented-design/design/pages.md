@@ -9,9 +9,11 @@ Cross-cutting notes for config-driven composition. Feature as-built: [`docs/modu
 - New pages: append `defaultPages`. New types: `registerModule` plus type-specific validation.
 - Module copy uses `t()` keys and/or literals. Image `alt` is required.
 - Calendar events are `{ date, title }` rows so a published sheet can map date + display columns in Slice 04.
+- Optional page `appearance` and module `style` use the closed vocabulary in `style.ts` — see [ui-controls.md](ui-controls.md).
 
 ## Related
 
 - Sheets fetch/hydration: [updatable-content.md](updatable-content.md) (Slice 04).
 - Site navigation chrome: [navigation.md](navigation.md) (Slice 03).
 - Contact form submit: [submissions.md](submissions.md) (Slice 05).
+- Theme + style options: [ui-controls.md](ui-controls.md) (Slice 06).

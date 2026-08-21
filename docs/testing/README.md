@@ -7,7 +7,7 @@
 | [`docs/project-files/regression/regression-plan.md`](../project-files/regression/regression-plan.md) | Inventory + slice mapping |
 | Slice SC-xx | `docs/requirements/slices/<id>/success-criteria/` |
 
-**Layer 1 (Slice 05):** `tests/unit/submit-adapters.test.ts`, `contact-form.test.tsx` (plus prior Sheets, navbar, composer, `t()` tests). `tests/end_to_end/smoke/` stays Planned (no Playwright package).
+**Layer 1 (Slice 06):** `tests/unit/demo-site.test.ts`, `site-theme.test.tsx`, `module-style.test.tsx` (plus prior form, Sheets, navbar, composer, `t()` tests). `tests/end_to_end/smoke/` stays Planned (no Playwright package).
 
 ```powershell
 npm test
