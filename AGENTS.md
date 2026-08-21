@@ -43,7 +43,7 @@ This is **not** a FastAPI + SQL Server monorepo. Do not scaffold `databases/`, I
 **Local development**
 
 - Template: `.env.example` | Non-secret config: `.env.local` (gitignored)
-- Typical values: Vite `BASE_URL` / GitHub Pages path, Google Sheets published CSV/JSON URLs
+- Typical values: Vite `BASE_URL` / GitHub Pages path, Google Sheets published CSV/JSON URLs, public submit endpoints
 - Run: `npm install` then `npm run dev`
 - Build: `npm run build` (static output for GitHub Pages)
 

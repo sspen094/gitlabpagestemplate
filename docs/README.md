@@ -34,3 +34,4 @@ README.md (repo) → docs/README.md → layer hub → specific doc
 | modular-pages | pages | [modules/pages/features/modular-pages](modules/pages/features/modular-pages/README.md) |
 | navbar | navigation | [modules/navigation/features/navbar](modules/navigation/features/navbar/README.md) |
 | sheets-hydration | updatable-content | [modules/updatable-content/features/sheets-hydration](modules/updatable-content/features/sheets-hydration/README.md) |
+| external-forms | submissions | [modules/submissions/features/external-forms](modules/submissions/features/external-forms/README.md) |

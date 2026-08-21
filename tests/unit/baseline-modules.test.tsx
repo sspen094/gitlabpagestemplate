@@ -362,9 +362,15 @@ describe('demo page composition', () => {
     expect(
       screen.getByRole('heading', { name: defaultText.contact.info.title }),
     ).toBeTruthy()
-    expect(screen.getByText(defaultText.contact.info.labelOne)).toBeTruthy()
+    expect(
+      screen.getAllByText(defaultText.contact.info.labelOne).length,
+    ).toBeGreaterThan(0)
     expect(
       screen.getByRole('link', { name: defaultText.contact.info.valueOne }),
     ).toBeTruthy()
+    expect(
+      screen.getByRole('heading', { name: defaultText.contact.form.title }),
+    ).toBeTruthy()
+    expect(screen.getByRole('button', { name: defaultText.contact.form.submit })).toBeTruthy()
   })
 })

@@ -50,7 +50,7 @@ Fetch failure, empty feed, or every row invalid maps to `updatable.fallback.*` k
 
 ## Out of scope
 
-- Writing to Sheets or storing submissions (Slice 05)
+- Writing to Sheets (form submit is [external-forms](../../../submissions/features/external-forms/README.md))
 - Playwright / axe CI (not in this repo; hydration covered in Vitest)
 
 ## Tests

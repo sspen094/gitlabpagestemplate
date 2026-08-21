@@ -14,3 +14,4 @@ Cross-cutting notes for config-driven composition. Feature as-built: [`docs/modu
 
 - Sheets fetch/hydration: [updatable-content.md](updatable-content.md) (Slice 04).
 - Site navigation chrome: [navigation.md](navigation.md) (Slice 03).
+- Contact form submit: [submissions.md](submissions.md) (Slice 05).

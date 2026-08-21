@@ -23,6 +23,7 @@ Pages are registered as configuration (`id`, `path`, ordered `modules`). Hash ro
 | `src/modules/pages/modular-pages/heading-level.tsx` | Nested heading levels |
 | `src/modules/pages/modular-pages/calendar-events.ts` | Event shape + date helpers, including upcoming-event selection |
 | Baseline modules | `HeroModule`, `TextBlockModule`, `ImageBlockModule`, `CardListModule`, `SectionModule`, `CalendarModule`, `ContactInfoModule` |
+| Slice 05 form | `ContactFormModule` (`type: 'contact-form'`) — owned by [external-forms](../../../submissions/features/external-forms/README.md) |
 | `PlaceholderModule` | Kept for tests / leftover config |
 
 ## How to add a page
@@ -40,6 +41,7 @@ Append an entry to `defaultPages` in `pages-config.ts` (`id`, `path`, `modules`)
 | `section` | `children` — nested instances through the same pipeline |
 | `calendar` | `events` with `date` (`YYYY-MM-DD`) + title; `layout` `list` (default), `month` / `grid`, or `hybrid` / `agenda`; optional `month` `YYYY-MM`, `upcomingCount`, `upcomingTitle` / `upcomingTitleKey` |
 | `contact` | Label/value list; `type` `email` / `phone` / `url` / `plain` |
+| `contact-form` | Example Contact form; submits via Slice 05 adapters |
 | `placeholder` | Title required; Phase 1 stub |
 
 Unknown types, missing required fields, or a calendar `month` that is not `YYYY-MM` render `FallbackModule`. `mode: 'updatable'` goes through Slice 04 `UpdatableModule` (static `config` is the shell).
@@ -65,7 +67,7 @@ The same event rows feed every layout (`date` column + display/title column), so
 | `#/` | `home` — hero + CTA to demo |
 | `#/demo` | `demo` — one sheet-backed example per updatable type; the calendar uses the hybrid layout |
 | `#/about` | `about` — section landing (Slice 03 nav target) |
-| `#/about/contact` | `contact` — hero + sheet-backed `contact-info` |
+| `#/about/contact` | `contact` — hero + sheet-backed `contact-info` + `contact-form` |
 | `#/about/members` | `members` — About subsection |
 
 ## Out of scope
@@ -80,3 +82,4 @@ Navbar chrome shipped in Slice 03 — [navbar as-built](../../../navigation/feat
 - `tests/unit/page-composer.test.tsx` — ordered modules, unknown-type fallback, config-only extra page
 - `tests/unit/module-definition.test.ts` — model, `dataSource`, type-specific fallback
 - `tests/unit/baseline-modules.test.tsx` — hero/text/image/cards/section/calendar/contact; heading levels; missing alt; month-grid day placement; hybrid cards + grid; upcoming-event selection; month stepping; demo + contact composition
+- `tests/unit/contact-form.test.tsx` — Contact form module (Slice 05)

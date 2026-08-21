@@ -68,6 +68,7 @@ describe('module definition model', () => {
   it('accepts registered baseline types and falls back for incomplete image or calendar config', () => {
     expect(types.has('hero')).toBe(true)
     expect(types.has('calendar')).toBe(true)
+    expect(types.has('contact-form')).toBe(true)
 
     const hero = prepareModule(
       {

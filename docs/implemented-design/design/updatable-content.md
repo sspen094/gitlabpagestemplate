@@ -12,5 +12,5 @@ Cross-cutting notes for Google Sheets hydration. Feature as-built: [`docs/module
 
 ## Not this slice
 
-- Site-side storage of form submissions (Slice 05).
+- Form submit adapters (owned by [submissions](submissions.md) / Slice 05).
 - Sheets-backed navigation.

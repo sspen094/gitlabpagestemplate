@@ -1,3 +1,4 @@
+import { ContactFormModule } from '../../submissions/external-forms/ContactFormModule.tsx'
 import { CalendarModule } from './CalendarModule.tsx'
 import { CardListModule } from './CardListModule.tsx'
 import { ContactInfoModule } from './ContactInfoModule.tsx'
@@ -30,3 +31,4 @@ registerModule('card-list', CardListModule)
 registerModule('section', SectionModule)
 registerModule('calendar', CalendarModule)
 registerModule('contact', ContactInfoModule)
+registerModule('contact-form', ContactFormModule)

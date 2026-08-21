@@ -170,6 +170,11 @@ export function validateTypeConfig(instance: ModuleInstance): ValidationIssue[] 
       return []
     case 'calendar':
       return validateCalendar(instance)
+    case 'contact-form':
+      return requireTitle(
+        instance,
+        'contact-form modules require titleKey or title',
+      )
     default:
       return []
   }
