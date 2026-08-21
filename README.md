@@ -101,7 +101,7 @@ Vite `base` comes from a single value: **`BASE_URL`**.
 
 **GitHub Actions:** nothing to set. The workflow derives the base from the repository name (`/<repo>/`, or `/` for a `<user>.github.io` repo). To override it, add an Actions variable `BASE_URL` under Settings → Secrets and variables → Actions → Variables.
 
-For live Google Sheets content, also add Actions variables named `VITE_GOOGLE_SHEETS_URL` and `VITE_GOOGLE_SHEETS_GIDS`. Vite embeds these public values during the static production build.
+For live Google Sheets content, also add `VITE_GOOGLE_SHEETS_URL` and `VITE_GOOGLE_SHEETS_GIDS`, either as repository Actions variables or as `github-pages` environment variables. Vite embeds these public values during the static production build, so the workflow's build job must be able to read them; the run prints each value's length and warns when one is empty.
 
 ## Deploy to GitHub Pages
 

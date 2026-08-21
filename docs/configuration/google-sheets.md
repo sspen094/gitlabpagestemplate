@@ -27,7 +27,7 @@ A Google worksheet is addressed only by `gid`. Without a gid for that tab, the m
 1. Share the spreadsheet as **Anyone with the link → Viewer**.
 2. Copy each tab's `#gid=` from the address bar.
 3. Local: `.env.local` (from `.env.example`), then restart `npm run dev`.
-4. Pages: Actions variables with the same names. Vite embeds them at **build** time.
+4. Pages: same names as a repository Actions variable or a `github-pages` environment variable. Vite embeds them at **build** time, so they must be visible to the workflow's build job.
 
 Requests go to `/spreadsheets/d/<id>/export?format=csv&gid=<gid>`, not `gviz`. Non-Google published CSV/JSON URLs still work if supplied as an inline `dataSource`.
 

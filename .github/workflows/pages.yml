@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Vite inlines VITE_* at build time, so this job must join the environment
+    # that holds the sheet configuration. Deployment still happens in `deploy`.
+    environment: github-pages
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -50,6 +53,20 @@ jobs:
           fi
           echo "base=$base" >> "$GITHUB_OUTPUT"
           echo "Vite base: $base"
+
+      # Both values are public and non-secret. An empty value here is the one
+      # failure that looks like success: the build passes and every updatable
+      # module silently renders its static shell.
+      - name: Check sheet config
+        env:
+          SHEETS_URL: ${{ vars.VITE_GOOGLE_SHEETS_URL }}
+          SHEETS_GIDS: ${{ vars.VITE_GOOGLE_SHEETS_GIDS }}
+        run: |
+          echo "VITE_GOOGLE_SHEETS_URL characters: ${#SHEETS_URL}"
+          echo "VITE_GOOGLE_SHEETS_GIDS characters: ${#SHEETS_GIDS}"
+          if [ -z "$SHEETS_URL" ] || [ -z "$SHEETS_GIDS" ]; then
+            echo "::warning::Sheet config empty; updatable modules will render their static shell. Set VITE_GOOGLE_SHEETS_URL and VITE_GOOGLE_SHEETS_GIDS as github-pages environment variables or repository Actions variables."
+          fi
 
       - name: Build
         run: npm run build

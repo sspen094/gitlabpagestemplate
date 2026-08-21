@@ -113,7 +113,7 @@ Stop when the tasks file matches requirements.
 | File | Who edits | What to fill |
 |------|-----------|--------------|
 | **`.env.local`** | You (gitignored) | Non-secret local config: Vite base path, `VITE_GOOGLE_SHEETS_URL`, and `VITE_GOOGLE_SHEETS_GIDS`. Start from `.env.example`. |
-| **GitHub Pages** | You | Repo Pages settings; optional Actions variables `BASE_URL`, `VITE_GOOGLE_SHEETS_URL`, and `VITE_GOOGLE_SHEETS_GIDS`. |
+| **GitHub Pages** | You | Repo Pages settings; optional `BASE_URL`, `VITE_GOOGLE_SHEETS_URL`, and `VITE_GOOGLE_SHEETS_GIDS` as repository Actions variables or `github-pages` environment variables. |
 
 **Load locally:**
 
@@ -130,7 +130,7 @@ Production is a static `npm run build` deployed to GitHub Pages. There is no SQL
 
 **Nav:** edit `src/modules/navigation/navbar/nav-config.ts` for top-level links and dropdowns. Labels are `nav.items.*` / `nav.chrome.*` in `text-config.ts`. Narrow viewports use a hamburger drawer.
 
-**Google Sheets:** use one public, read-only spreadsheet. Name each worksheet tab for its target updatable module (`demo-text`, `demo-cards`, `demo-calendar`, `contact-info` in the demo). All rows on that tab use the module's schema. Set `VITE_GOOGLE_SHEETS_URL` and `VITE_GOOGLE_SHEETS_GIDS` locally and as GitHub Actions variables for production builds; see [`configuration/google-sheets.md`](configuration/google-sheets.md).
+**Google Sheets:** use one public, read-only spreadsheet. Name each worksheet tab for its target updatable module (`demo-text`, `demo-cards`, `demo-calendar`, `contact-info` in the demo). All rows on that tab use the module's schema. Set `VITE_GOOGLE_SHEETS_URL` and `VITE_GOOGLE_SHEETS_GIDS` locally, and for production as repository Actions variables or `github-pages` environment variables; see [`configuration/google-sheets.md`](configuration/google-sheets.md).
 
 ---
 
