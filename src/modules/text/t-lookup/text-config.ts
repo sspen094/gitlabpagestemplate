@@ -60,6 +60,39 @@ export const defaultText: TextTree = {
       twoDetail: 'Calendar entries come from config in this slice.',
     },
   },
+  nav: {
+    chrome: {
+      label: 'Primary',
+      menu: 'Menu',
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu',
+    },
+    items: {
+      home: 'Home',
+      demo: 'Demo',
+      about: 'About',
+      contact: 'Contact',
+      members: 'Members',
+    },
+  },
+  about: {
+    hero: {
+      title: 'About',
+      body: 'Section landing. Subpages are listed in the About dropdown.',
+    },
+  },
+  contact: {
+    hero: {
+      title: 'Contact',
+      body: 'Example About subsection.',
+    },
+  },
+  members: {
+    hero: {
+      title: 'Members',
+      body: 'Example About subsection.',
+    },
+  },
   app: {
     notFound: {
       body: 'Page not found.',

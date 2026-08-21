@@ -26,7 +26,7 @@ A build-time text system. Components call `t('page.section.item')` (or `useText(
 
 ## How to change copy
 
-Edit the matching leaf under `defaultText` in `text-config.ts`. Keys are `page.section.item`. The shell currently uses `home.header.brand`, `home.hero.title`, and `home.hero.body`.
+Edit the matching leaf under `defaultText` in `text-config.ts`. Keys are `page.section.item`. The shell currently uses `home.header.brand` plus page module keys. Navbar labels live under `nav.chrome` and `nav.items`.
 
 The HTML `<title>` in `index.html` is not on this path.
 

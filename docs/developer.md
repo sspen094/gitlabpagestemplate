@@ -128,6 +128,8 @@ Production is a static `npm run build` deployed to GitHub Pages. There is no SQL
 
 **Pages:** edit `src/modules/pages/modular-pages/pages-config.ts` to add pages or module instances. Preview `#/` and `#/demo`.
 
+**Nav:** edit `src/modules/navigation/navbar/nav-config.ts` for top-level links and dropdowns. Labels are `nav.items.*` / `nav.chrome.*` in `text-config.ts`. Narrow viewports use a hamburger drawer.
+
 ---
 
 ## 8. Defects

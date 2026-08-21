@@ -10,8 +10,8 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 | Field | Value |
 |-------|-------|
-| **Next slice id** | `03` |
-| **Last updated** | 2026-08-20 (Slice 02 shipped) |
+| **Next slice id** | `04` |
+| **Last updated** | 2026-08-21 (Slice 03 shipped) |
 
 ---
 
@@ -22,6 +22,7 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 | 00-app-scaffold-and-deploy | Shipped 2026-08-20 | platform | app-scaffold | Vite + React TS SPA, `BASE_URL` Pages base, GitHub Actions deploy, placeholder shell |
 | 01-text-management | Shipped 2026-08-20 | text | t-lookup | Central `defaultText` + `t()` / `useText()`; missing-key fallback; `TextProvider` for alternate sets |
 | 02-modular-page-system | Shipped 2026-08-20 | pages | modular-pages | Config-driven pages, baseline modules, calendar list + month grid (D01) |
+| 03-navigation | Shipped 2026-08-21 | navigation | navbar | Config-driven navbar, keyboard dropdowns, mobile hamburger drawer, layout quality gate (D01) |
 
 ---
 
@@ -30,7 +31,7 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 | Area | Status | Notes |
 |------|--------|-------|
 | Hosting | Shipped | GitHub Pages via Actions; Vite `base` from `BASE_URL` |
-| Navigation | Planned | Top navbar with sections and dropdowns |
+| Navigation | Shipped | Data-driven navbar; desktop dropdowns; mobile hamburger drawer |
 | Page modules | Shipped | Hero, text, image, cards, section, calendar (list + month); composer + registry |
 | Text lookup | Shipped | `t()` with `[page].[section].[item]` keys; edit `text-config.ts` |
 | Updatable content | Planned | Google Sheets published data; fail gracefully |
@@ -57,7 +58,13 @@ Living index of **what the product has built**. `agent-product-manager` reads th
 
 | Feature id | Routes / entry | Database | Status |
 |------------|----------------|----------|--------|
-| modular-pages | `#/` and `#/demo` (`pages-config.ts`) | none | Shipped — [as-built](../modules/pages/features/modular-pages/README.md) |
+| modular-pages | `#/` and `#/demo` (`pages-config.ts`); About/Contact/Members heroes for nav targets | none | Shipped — [as-built](../modules/pages/features/modular-pages/README.md) |
+
+### navigation
+
+| Feature id | Routes / entry | Database | Status |
+|------------|----------------|----------|--------|
+| navbar | Shell header (`Navbar` + `nav-config.ts`) | none | Shipped — [as-built](../modules/navigation/features/navbar/README.md) |
 
 ### foundations
 

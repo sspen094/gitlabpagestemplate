@@ -126,7 +126,43 @@ export const defaultPages: PageDefinition[] = [
       },
     ],
   },
+  heroPage('about', '/about', 'about.hero.title', 'about.hero.body'),
+  heroPage(
+    'contact',
+    '/about/contact',
+    'contact.hero.title',
+    'contact.hero.body',
+  ),
+  heroPage(
+    'members',
+    '/about/members',
+    'members.hero.title',
+    'members.hero.body',
+  ),
 ]
+
+function heroPage(
+  id: string,
+  path: string,
+  titleKey: string,
+  bodyKey: string,
+): PageDefinition {
+  return {
+    id,
+    path,
+    modules: [
+      {
+        id: `${id}-hero`,
+        type: 'hero',
+        mode: 'static',
+        config: {
+          titleKey,
+          bodyKey,
+        },
+      },
+    ],
+  }
+}
 
 export function getPageByPath(
   pages: readonly PageDefinition[],

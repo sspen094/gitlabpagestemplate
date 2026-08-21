@@ -96,4 +96,4 @@ See [closeout.md](success-criteria/closeout.md) and [traceability.md](success-cr
 
 | # | Question | Status |
 |---|----------|--------|
-| Q1 | Mobile nav pattern — hamburger drawer or collapsed accordion? | Open |
+| Q1 | Mobile nav pattern — hamburger drawer or collapsed accordion? | Closed — hamburger + side drawer ([D01](deviations/D01-mobile-nav-and-layout.md)) |

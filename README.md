@@ -14,7 +14,9 @@ npm run dev
 
 **Site copy:** edit strings in `src/modules/text/t-lookup/text-config.ts`.
 
-**Pages:** add or reorder modules in `src/modules/pages/modular-pages/pages-config.ts`. Hash routes: `#/` (home) and `#/demo` (baseline modules + calendars).
+**Pages:** add or reorder modules in `src/modules/pages/modular-pages/pages-config.ts`. Hash routes: `#/` (home), `#/demo` (baseline modules + calendars), plus About/Contact/Members heroes for the navbar.
+
+**Nav:** add items in `src/modules/navigation/navbar/nav-config.ts`. Labels live under `nav.*` in `text-config.ts`.
 
 ## Base path (forks)
 
